@@ -13,8 +13,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Zipkin user feature download link -->
 		<version.download-maven-plugin>1.4.0</version.download-maven-plugin>
+		<!-- Zipkin user feature download link -->
         <zipkin.usr.feature>https://github.com/WASdev/sample.opentracing.zipkintracer/releases/download/1.2/liberty-opentracing-zipkintracer-1.2-sample.zip</zipkin.usr.feature> 
 	</properties>
    
