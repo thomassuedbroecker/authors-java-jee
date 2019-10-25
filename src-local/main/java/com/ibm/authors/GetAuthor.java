@@ -2,8 +2,14 @@ package com.ibm.authors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.JsonObject;
+import javax.json.Json;
+
+// JAX-RS
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.QueryParam;
+
+// OPEN API
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -12,19 +18,19 @@ import org.eclipse.microprofile.openapi.annotations.info.Info;
 import org.eclipse.microprofile.openapi.annotations.info.License;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import javax.ws.rs.QueryParam;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-import javax.json.Json;
+
 
 
 @ApplicationScoped
 @Path("/getauthor")
-@OpenAPIDefinition(info = @Info(title = "Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
+// @OpenAPIDefinition(info = @Info(title = "Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
 public class GetAuthor {
 
 	@GET
+	/*
 	@APIResponses(value = {
 		@APIResponse(
 	      responseCode = "404",
@@ -47,6 +53,7 @@ public class GetAuthor {
 		    summary = "Get specific author",
 		    description = "Get specific author"
 	)
+	*/
 
 	public Response getAuthor(@Parameter(
             description = "The unique name of the author",
