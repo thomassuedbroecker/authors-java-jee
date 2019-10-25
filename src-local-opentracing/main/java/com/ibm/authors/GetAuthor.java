@@ -22,6 +22,11 @@ import javax.json.Json;
 import java.util.logging.Logger;
 // Java logger
 
+// Export information of requests
+import javax.servlet.http.*;
+import javax.ws.rs.core.Context;
+// Export information of requests
+
 // Tracing 
 import javax.inject.Inject;
 import org.eclipse.microprofile.opentracing.*;
@@ -69,7 +74,10 @@ public class GetAuthor {
             required = true,
             example = "Niklas Heidloff",
             schema = @Schema(type = SchemaType.STRING))
-			@QueryParam("name") String name) {
+			@QueryParam("name") String name, @Context HttpServletRequest request) {
+
+		    // Custom log
+			logHeaders(request);
 		
 			Author author = new Author();
 			author.name = "Niklas Heidloff";
@@ -120,4 +128,40 @@ public class GetAuthor {
 
 		return output;
 	}
+
+	private void logHeaders (HttpServletRequest request){
+		// tag::custom-tracer[]
+        Scope activeScope = tracer.scopeManager().active();
+		if (activeScope != null) {
+    		activeScope.span().log("... logHeaders active scope found");
+		}
+
+		Span activeSpan = tracer.activeSpan();
+		Tracer.SpanBuilder spanBuilder = tracer.buildSpan("Custom logHeaders");
+
+		if (activeSpan != null){
+			spanBuilder.asChildOf(activeSpan.context());
+		}
+
+		Span childSpan = spanBuilder.startManual();
+		childSpan.setTag("logHeaders", true);
+		childSpan.log("logHeaders - Just created childSpam");
+		if( activeSpan == null){
+			//activeSpan = tracer.activateSpan(childSpan);
+			tracer.scopeManager().activate(childSpan,true);
+		}
+		// end::custom-tracer[]
+		
+		Enumeration<String> headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String header = headerNames.nextElement();
+			System.out.println(header+": "+request.getHeader(header));
+		}
+
+	    // tag::custom-tracer[]
+        childSpan.finish();
+		// end::custom-tracer[]
+
+	}
+
 }
