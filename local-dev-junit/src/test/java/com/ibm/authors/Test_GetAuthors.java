@@ -26,7 +26,7 @@ public class Test_GetAuthors {
         static final String BASE_URL = "http://localhost/api/v1/";
         static final String AUTHOR_NAME="Niklas";
       
-        AuthorsClient customRestClient = RestClientBuilder.newBuilder().baseUrl(BASE_URL).build(AuthorsClient.class);
+        AuthorsClient customRestClient = RestClientBuilder.newBuilder().baseUrl(apiUrl).register().build(AuthorsClient.class);
    }
 
     /**
