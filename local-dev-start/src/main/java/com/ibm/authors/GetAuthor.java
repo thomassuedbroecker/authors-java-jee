@@ -29,6 +29,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 public class GetAuthor {
 
 	@GET
+	/*
 	@APIResponses(value = {
 		@APIResponse(
 	      responseCode = "404",
@@ -51,6 +52,7 @@ public class GetAuthor {
 		    summary = "Get specific author",
 		    description = "Get specific author"
 	)
+	*/
 
 	public Response getAuthor(@Parameter(
             description = "The unique name of the author",

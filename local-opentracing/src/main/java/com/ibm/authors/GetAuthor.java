@@ -22,10 +22,11 @@ import javax.json.Json;
 import java.util.logging.Logger;
 // Java logger
 
-// Export information of requests
+// Needed for export information of requests method (logHeaders)
 import javax.servlet.http.*;
 import javax.ws.rs.core.Context;
-// Export information of requests
+import java.util.Enumeration;
+// Needed for export information of requests method (logHeaders)
 
 // Tracing 
 import javax.inject.Inject;
