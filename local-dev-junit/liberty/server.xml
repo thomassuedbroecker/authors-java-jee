@@ -8,5 +8,5 @@
      
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>
 
-    <webApplication location="authors.war" contextRoot="api"/>
+    <webApplication location="authors-junit.war" contextRoot="api"/>
 </server>

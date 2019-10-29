@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>authors</artifactId>
+	<artifactId>authors-opentracing</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
@@ -48,7 +48,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>authors</finalName>
+		<finalName>authors-opentracing</finalName>
         <!--Plugins -->
         <plugins>  
             <!-- Enable liberty-maven plugin -->
