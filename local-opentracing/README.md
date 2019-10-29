@@ -18,24 +18,24 @@ $ docker run --name zipkin -it -p 9411:9411 openzipkin/zipkin
 $ docker build -t authors-opentracing .
 ```
 
-- run
+ * run
 ```sh
 $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 authors-opentracing
 ```
 or 
 
-- run debug port 777
+ * run with debug port 777
 ```sh
-$ docker build -t authors-opentracing .
 $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 -p 7777:7777 authors-opentracing server debug
 ```
 * Step 3: Now invoke the authors api `http://localhost:3000/openapi/ui/`
 
-![zipkin](../images/zipkin-01-authors.png)
 
 * Step 4: Open the url `http://localhost:9411/zipkin`
 
 * Step 5: Press the button **Find Traces**
+
+![zipkin](../images/zipkin-01-authors.png)
 
 ## Configuration
 
