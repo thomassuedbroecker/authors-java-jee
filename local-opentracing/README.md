@@ -33,7 +33,7 @@ $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 -p 7777:7777 authors-
 
 * Step 4: Open the url `http://localhost:9411/zipkin`
 
-* Step 5: Press the button **Find Traces**
+* Step 5: Press the button **Find Traces** and inspect the traces.
 
 ![zipkin](../images/zipkin-01-authors.png)
 
