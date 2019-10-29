@@ -11,7 +11,7 @@
      
     <opentracingZipkin host="zipkinhost" port="9411"/>
 
-    <httpEndpoint id="defaultHttpEndpoint" host="localhost" httpPort="3000" httpsPort="9443"/>
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>
 
     <webApplication location="authors-opentracing.war" contextRoot="api">
         <!-- enable visibility to third party apis -->

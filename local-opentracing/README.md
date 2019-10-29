@@ -1,26 +1,45 @@
 # Authors Microservice in Java
 
-Open tracing
+## Open tracing
 
-Working with zipkin and docker locally:
+Working with docker locally:
 
 [Understand the Docker network](https://docs.docker.com/engine/reference/commandline/network_connect/)
 
-* Start the zipkin server:
+* Step 1: Start the zipkin server
 ```sh
 $ docker run --name zipkin -it -p 9411:9411 openzipkin/zipkin
 ```
 
-* Start the mircoservice and link the container to the zipkin container.
+* Step 2: Start the mircoservice and link the container to the zipkin container.
 
+- build
 ```sh
-$ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 authors
+$ docker build -t authors-opentracing .
 ```
-* Now invoke the authors api and inspect the call in zipkin
+
+- run
+```sh
+$ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 authors-opentracing
+```
+or 
+
+- run debug port 777
+```sh
+$ docker build -t authors-opentracing .
+$ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 -p 7777:7777 authors-opentracing server debug
+```
+* Step 3: Now invoke the authors api `http://localhost:3000/openapi/ui/`
 
 ![zipkin](../images/zipkin-01-authors.png)
 
-* Enable logging to your server.xml:
+* Step 4: Open the url `http://localhost:9411/zipkin`
+
+* Step 5: Press the button **Find Traces**
+
+## Configuration
+
+* Enable logging in your server.xml:
 
 ```xml
     <logging traceSpecification="com.ibm.ws.opentracing.*=all:com.ibm.ws.microprofile.opentracing.*=all"/>
@@ -51,12 +70,6 @@ $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 authors
 
     <logging traceSpecification="com.ibm.ws.opentracing.*=all:com.ibm.ws.microprofile.opentracing.*=all"/>
 </server>
-```
-
-* Start zipkin server in Docker:
-
-```sh
-$ docker run -it -p 9411:9411 openzipkin/zipkin
 ```
 
 * Get get running container on your local machine
