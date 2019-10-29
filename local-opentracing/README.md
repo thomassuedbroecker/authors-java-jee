@@ -13,21 +13,22 @@ $ docker run --name zipkin -it -p 9411:9411 openzipkin/zipkin
 
 * Step 2: Start the mircoservice and link the container to the zipkin container.
 
-- build
+ * build
 ```sh
-$ docker build -t authors-opentracing .
+    $ docker build -t authors-opentracing .
 ```
 
  * run
 ```sh
-$ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 authors-opentracing
+    $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 authors-opentracing
 ```
 or 
 
  * run with debug port 777
 ```sh
-$ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 -p 7777:7777 authors-opentracing server debug
+    $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 -p 7777:7777 authors-opentracing server debug
 ```
+
 * Step 3: Now invoke the authors api `http://localhost:3000/openapi/ui/`
 
 
@@ -39,13 +40,13 @@ $ docker run -i --rm --link zipkin:zipkinhost -p 3000:3000 -p 7777:7777 authors-
 
 ## Configuration
 
-* Enable logging in your server.xml:
+* Enable logging in your `server.xml`
 
 ```xml
     <logging traceSpecification="com.ibm.ws.opentracing.*=all:com.ibm.ws.microprofile.opentracing.*=all"/>
 ```
 
-* Full server.xml
+* Full `server.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
