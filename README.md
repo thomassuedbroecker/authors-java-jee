@@ -4,8 +4,14 @@
 
 Verify the running Authors service on the local machine.
 
+* Get Author
 ```sh
 $ curl -X GET "http://localhost:3000/api/v1/getauthor?name=Niklas%20Heidloff" -H "accept: application/json"
+```
+
+* Check health
+```sh
+curl http://localhost:3000/health
 ```
 
 # Working with Visual Studio Code OpenLiberty and MicroProfile
