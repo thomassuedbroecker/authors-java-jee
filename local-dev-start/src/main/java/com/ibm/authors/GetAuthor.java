@@ -64,17 +64,20 @@ public class GetAuthor {
             example = "Niklas Heidloff",
 			schema = @Schema(type = SchemaType.STRING))*/
 			@QueryParam("name") String name) {
-		
+			
+			/*
 			Author author = new Author();
 			author.name = "Niklas Heidloff";
 			author.twitter = "https://twitter.com/nheidloff";
 			author.blog = "http://heidloff.net";
+			*/
 
 			System.out.println("... send getAuthor response");
 
-			return Response.ok(this.createJson(author)).build();
+			return Response.ok(/*this.createJson(author)*/).build();
 	}
-
+	
+	/*
 	private JsonObject createJson(Author author) {
 		
 		JsonObject output = Json.createObjectBuilder().add("name", author.name).add("twitter", author.twitter)
@@ -84,4 +87,5 @@ public class GetAuthor {
 
 		return output;
 	}
+	*/
 }
