@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.QueryParam;
 
 // OPEN API
+/*
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -21,7 +22,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-
+*/
 
 @ApplicationScoped
 @Path("/getauthor")
@@ -31,6 +32,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 public class GetAuthor {
 
 	@GET
+	/*
 	@APIResponses(value = {
 		@APIResponse(
 	      responseCode = "404",
@@ -53,12 +55,14 @@ public class GetAuthor {
 		    summary = "Get specific author",
 		    description = "Get specific author"
 	)
+	*/
 
-	public Response getAuthor(@Parameter(
+	public Response getAuthor(
+		    /*@Parameter(
             description = "The unique name of the author",
             required = true,
             example = "Niklas Heidloff",
-            schema = @Schema(type = SchemaType.STRING))
+			schema = @Schema(type = SchemaType.STRING))*/
 			@QueryParam("name") String name) {
 		
 			Author author = new Author();
