@@ -1,0 +1,9 @@
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+        
+@Path("/restclient/getauthor")
+public interface AuthorClient {
+
+    @GET
+    String GetAuthor();
+}
