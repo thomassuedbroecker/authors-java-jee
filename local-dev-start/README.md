@@ -17,7 +17,7 @@
       - Import MP-OpenAPI with snipped
       - Remove comments
       - Run Microservice
-
+      - Open browser and show Open API Explorer
 
 ## Step 3: HealthCheck (HealthCheck) (2 min)
 
