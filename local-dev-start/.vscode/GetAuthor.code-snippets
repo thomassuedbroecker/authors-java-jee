@@ -21,7 +21,7 @@
 	},
 	"OL- Enable liberty-maven plugin": {
 		"scope": "xml",
-		"prefix": "OPEN-API-import-getauthors",
+		"prefix": "OL- Enable liberty-maven plugin",
 		"body": [
 			"<!-- Enable liberty-maven plugin -->",
             "<plugin>",
@@ -32,6 +32,18 @@
 		],  	
 		 "description": "OL- Enable liberty-maven plugin"
 	 },
+	 "OL- add libertyMavenConfiguration": {
+		"scope": "xml",
+		"prefix": "OL- add libertyMavenConfiguration",
+		"body": [
+				"<!-- libertyMavenConfiguration -->","<configuration>",
+				"   <serverName>authorsDevStartServer</serverName>",
+				"   <configFile>liberty/server.xml</configFile>",
+            	"</configuration>",
+				"<!-- libertyMavenConfiguration -->"
+			],  	
+			"description": "OL- Enable liberty-maven plugin"
+		},
 	 "MP-HealthCheck class": {
 		"scope": "java",
 		"prefix": "MP-HealthCheck class",
