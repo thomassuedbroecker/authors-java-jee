@@ -34,21 +34,18 @@
 
 	<build>
 		<finalName>authors-start</finalName>
-        <!--Plugins -->
         <plugins>  
             <!-- Enable liberty-maven plugin -->
-            <!-- tag::libertyMavenPlugin[] -->
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-				<!-- tag::libertyMavenConfiguration[] -->
+				<!-- libertyMavenConfiguration -->
 				<configuration>
                 	<serverName>authorsDevStartServer</serverName>
 					<configFile>liberty/server.xml</configFile>
             	</configuration>
-				<!-- end::libertyMavenConfiguration[] -->
+				<!-- libertyMavenConfiguration -->
             </plugin>
-            <!-- end::libertyMavenPlugin[] -->
             <!-- Enable liberty-maven-plugin -->
         </plugins>
 	</build>

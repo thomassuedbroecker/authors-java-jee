@@ -1,11 +1,11 @@
 { 
 	// Placeholders with the same ids are connected.
 	// Example:
-	"OpenAPI getauthors imports": {
+	"MP-OpenAPI imports": {
 	   "scope": "java",
-	   "prefix": "OPEN-API-import-getauthors",
+	   "prefix": "MP-OpenAPI imports",
 	   "body": [
-		"// OPEN API",
+		"$LINE_COMMENT OPEN API",
 		"import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;",
 		"import org.eclipse.microprofile.openapi.annotations.Operation;",
 		"import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;",
@@ -19,10 +19,41 @@
 		"import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;"],
 		"description": "OpenAPI import"
 	},
-	"OpenAPI getauthors class doc": {
+	"OL- Enable liberty-maven plugin": {
+		"scope": "xml",
+		"prefix": "OPEN-API-import-getauthors",
+		"body": [
+			"<!-- Enable liberty-maven plugin -->",
+            "<plugin>",
+            "   <groupId>io.openliberty.tools</groupId>",
+			"   <artifactId>liberty-maven-plugin</artifactId>",
+			"</plugin>",
+			"<!-- Enable liberty-maven-plugin -->"
+		],  	
+		 "description": "OL- Enable liberty-maven plugin"
+	 },
+	 "MP-HealthCheck class": {
 		"scope": "java",
-		"prefix": "OPEN-API-getauthors-class-doc",
-		"body": ["@OpenAPIDefinition(info = @Info(title = 'Authors Service', version = '1.0', description = 'Authors Service APIs', contact = @Contact(url = 'https://github.com/nheidloff/cloud-native-starter', name = 'Niklas Heidloff'), license = @License(name = 'License', url = 'https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE')))"],
-		"description": "OpenAPI getauthors class doc"
-	}
+		"prefix": "MP-HealthCheck class",
+		"body": [
+			"package com.ibm.authors;",
+			"",
+			"import javax.enterprise.context.ApplicationScoped;",
+			"",
+			"$LINE_COMMENT Health",
+			"import org.eclipse.microprofile.health.Health;",
+			"import org.eclipse.microprofile.health.HealthCheck;",
+			"import org.eclipse.microprofile.health.HealthCheckResponse;",
+			"",
+			"@Health",
+			"@ApplicationScoped",
+			"public class $TM_FILENAME_BASE implements HealthCheck {",
+			" @Override",
+			" public HealthCheckResponse call() {",
+			"   System.out.println($BLOCK_COMMENT_START... HealthCheck $BLOCK_COMMENT_END);",
+			"   return HealthCheckResponse.named($BLOCK_COMMENT_START authors $BLOCK_COMMENT_END).withData($BLOCK_COMMENT_START authors $BLOCK_COMMENT_END, $BLOCK_COMMENT_START ok $BLOCK_COMMENT_END).up().build();",
+			" }",
+			"}", ],
+		"description": "MP-HealthCheck class"
+    }
 }
