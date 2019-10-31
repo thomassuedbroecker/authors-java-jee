@@ -1,6 +1,5 @@
 { 
-	// Placeholders with the same ids are connected.
-	// Example:
+	// Microprofile
 	"MP-OpenAPI imports": {
 	   "scope": "java",
 	   "prefix": "MP-OpenAPI imports",
@@ -17,34 +16,9 @@
 		"import org.eclipse.microprofile.openapi.annotations.media.Content;",
 		"import org.eclipse.microprofile.openapi.annotations.media.Schema;",
 		"import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;"],
-		"description": "OpenAPI import"
+		"description": "MP OpenAPI import"
 	},
-	"OL- Enable liberty-maven plugin": {
-		"scope": "xml",
-		"prefix": "OL- Enable liberty-maven plugin",
-		"body": [
-			"<!-- Enable liberty-maven plugin -->",
-            "<plugin>",
-            "   <groupId>io.openliberty.tools</groupId>",
-			"   <artifactId>liberty-maven-plugin</artifactId>",
-			"</plugin>",
-			"<!-- Enable liberty-maven-plugin -->"
-		],  	
-		 "description": "OL- Enable liberty-maven plugin"
-	 },
-	 "OL- add libertyMavenConfiguration": {
-		"scope": "xml",
-		"prefix": "OL- add libertyMavenConfiguration",
-		"body": [
-				"<!-- libertyMavenConfiguration -->","<configuration>",
-				"   <serverName>authorsDevStartServer</serverName>",
-				"   <configFile>liberty/server.xml</configFile>",
-            	"</configuration>",
-				"<!-- libertyMavenConfiguration -->"
-			],  	
-			"description": "OL- Enable liberty-maven plugin"
-		},
-	 "MP-HealthCheck class": {
+	"MP-HealthCheck class": {
 		"scope": "java",
 		"prefix": "MP-HealthCheck class",
 		"body": [
@@ -52,7 +26,7 @@
 			"",
 			"import javax.enterprise.context.ApplicationScoped;",
 			"",
-			"$LINE_COMMENT Health",
+			"$LINE_COMMENT MP HealthCheck",
 			"import org.eclipse.microprofile.health.Health;",
 			"import org.eclipse.microprofile.health.HealthCheck;",
 			"import org.eclipse.microprofile.health.HealthCheckResponse;",
@@ -65,7 +39,34 @@
 			"   System.out.println($BLOCK_COMMENT_START... HealthCheck $BLOCK_COMMENT_END);",
 			"   return HealthCheckResponse.named($BLOCK_COMMENT_START authors $BLOCK_COMMENT_END).withData($BLOCK_COMMENT_START authors $BLOCK_COMMENT_END, $BLOCK_COMMENT_START ok $BLOCK_COMMENT_END).up().build();",
 			" }",
-			"}", ],
-		"description": "MP-HealthCheck class"
-    }
+			"}"],
+			"description": "MP-HealthCheck class"
+    },
+	// Open Liberty
+	"OL- Enable liberty-maven plugin": {
+		"scope": "xml",
+		"prefix": "OL- Enable liberty-maven plugin",
+		"body": [
+			"<!-- Enable liberty-maven plugin -->",
+            "<plugin>",
+            "   <groupId>io.openliberty.tools</groupId>",
+			"   <artifactId>liberty-maven-plugin</artifactId>",
+			"</plugin>",
+			"<!-- Enable liberty-maven-plugin -->"
+			],  	
+		 	"description": "OL- Enable liberty-maven plugin"
+	 },
+	 "OL- add libertyMavenConfiguration": {
+		"scope": "xml",
+		"prefix": "OL- add libertyMavenConfiguration",
+		"body": [
+				"<!-- libertyMavenConfiguration -->","<configuration>",
+				"   <serverName>authorsDevStartServer</serverName>",
+				"   <configFile>liberty/server.xml</configFile>",
+            	"</configuration>",
+				"<!-- libertyMavenConfiguration -->"
+				],  	
+				"description": "OL- Enable liberty-maven plugin"
+	}
+
 }
