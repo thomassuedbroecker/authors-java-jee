@@ -1,0 +1,25 @@
+**!!! UNDER CONSTRUCTION !!!**
+
+# Local development
+
+## Step 1: Exposing REST API (Java EE/Microprofile JAX-RS)
+     - Build Author Class
+     - Build Application Class
+     - Show GetAuthors Class
+     - Run Microservice on open liberty
+     - Show local POM
+     - Show local Server 
+
+## Step 2: Documenting REST API (Microprofile OpenAPI)
+
+      - Import MP-OpenAPI with snipped
+      - Remove comments
+      - Run Microservice
+
+
+## Step 3: HealthCheck (HealthCheck) (2 min)
+
+      - Create File HealthEndpoint.java
+      - Use snipped to create HealthEndpoint class
+      - Remove comments
+      - Run Microservice

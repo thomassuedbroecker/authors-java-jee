@@ -1,8 +1,10 @@
-# Authors Microservice in Java
+**!!! UNDER CONSTRUCTION !!!**
 
-## Open tracing
+# Using MP Open Tracing
 
-Working with docker locally:
+## Locally with Docker
+
+Here we use two Docker container one for the Authors microservice and one for Zikin.
 
 [Understand the Docker network](https://docs.docker.com/engine/reference/commandline/network_connect/)
 
