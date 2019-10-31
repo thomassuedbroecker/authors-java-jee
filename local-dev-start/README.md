@@ -6,7 +6,9 @@
      - Build Author Class
      - Build Application Class
      - Show GetAuthors Class
-     - Run Microservice on open liberty
+     - Add break point
+     - Run Microservice on open liberty with Liberty Dashboard
+     - Call service from new terminal session
      - Show local POM
      - Show local Server 
 
