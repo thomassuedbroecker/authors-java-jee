@@ -5,7 +5,7 @@
 		"prefix": "JAVA-construtor-public",
 		"body": [
 		 "public ${1:classname} () {",
-		 "  Sytem.out.println( $BLOCK_COMMENT_START ... ${1:classname} started $BLOCK_COMMENT_END );",
+		 "  System.out.println( $BLOCK_COMMENT_START ... ${1:classname} started $BLOCK_COMMENT_END );",
 		 "}"
 		 ],
 		 "description": "JAVA-construtor-public"
