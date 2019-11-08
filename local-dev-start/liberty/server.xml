@@ -2,7 +2,6 @@
 <server description="OpenLiberty Server">
 	
     <featureManager>
-        <feature>webProfile-8.0</feature>
         <feature>microProfile-2.1</feature>
     </featureManager>
      
