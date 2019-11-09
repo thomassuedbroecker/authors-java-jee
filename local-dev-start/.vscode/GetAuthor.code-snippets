@@ -16,8 +16,8 @@
 		"scope": "java",
 		"prefix": "MP-JAX-RS annotations",
 		"body": [
-			"@GET",
 			"@Path($BLOCK_COMMENT_START /getauthor $BLOCK_COMMENT_END)",
+			"@GET",
 			"@Produces(MediaType.APPLICATION_JSON)"
 		],
 		 "description": "MP-JAX-RS annotations"
