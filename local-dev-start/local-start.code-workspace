@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/thomassuedbroecker/Documents/tsuedbro/dev/cns-s-code-ws/authors-java-jee/local-dev-junit"
 		}
 	],
 	"settings": {

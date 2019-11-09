@@ -8,16 +8,16 @@ import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
-public class TestClientGetAuthors {
+public class Test_GetAuthors {
 
     @Test
     public void init() throws MalformedURLException {
-        URI baseURI = URI.create("http://localhost/api/v1/");
+        URI baseURI = URI.create("http://localhost/api/v1");
         AuthorClient client = RestClientBuilder.newBuilder().
                 baseUri(baseURI).
                 build(AuthorClient.class);                
         assertNotNull(client);
-        String result = client.ping();
+        String result = client.getAuthor("thomas");
         assertNotNull(result);
     }
 }
