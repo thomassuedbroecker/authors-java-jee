@@ -1,5 +1,7 @@
 { 
+	// **********************
 	// Java
+	// **********************
 	"JAVA-constructor-public": {
 		"scope": "java",
 		"prefix": "JAVA-constructor-public",
@@ -10,8 +12,9 @@
 		 ],
 		 "description": "JAVA-constructor-public"
 	},
-	
+	// **********************
 	// Microprofile
+	// **********************
 	"MP-JAX-RS annotations": {
 		"scope": "java",
 		"prefix": "MP-JAX-RS annotations",
@@ -22,7 +25,6 @@
 		],
 		 "description": "MP-JAX-RS annotations"
 	 },
-
 	"MP-OpenAPI imports": {
 	   "scope": "java",
 	   "prefix": "MP-OpenAPI imports",
@@ -64,8 +66,10 @@
 			" }",
 			"}"],
 			"description": "MP-HealthCheck class"
-    },
+	},
+	// **********************
 	// Open Liberty
+	// **********************
 	"OL- Enable liberty-maven plugin": {
 		"scope": "xml",
 		"prefix": "OL- Enable liberty-maven plugin",
