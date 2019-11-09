@@ -1,17 +1,28 @@
 { 
 	// Java
-	"JAVA-construtor-public": {
+	"JAVA-constructor-public": {
 		"scope": "java",
-		"prefix": "JAVA-construtor-public",
+		"prefix": "JAVA-constructor-public",
 		"body": [
 		 "public ${1:classname} () {",
 		 "  System.out.println( $BLOCK_COMMENT_START ... ${1:classname} started $BLOCK_COMMENT_END );",
 		 "}"
 		 ],
-		 "description": "JAVA-construtor-public"
+		 "description": "JAVA-constructor-public"
 	},
 	
 	// Microprofile
+	"MP-JAX-RS annotations": {
+		"scope": "java",
+		"prefix": "MP-JAX-RS annotations",
+		"body": [
+			"@GET",
+			"@Path($BLOCK_COMMENT_START /getauthor $BLOCK_COMMENT_END)",
+			"@Produces(MediaType.APPLICATION_JSON)"
+		],
+		 "description": "MP-JAX-RS annotations"
+	 },
+
 	"MP-OpenAPI imports": {
 	   "scope": "java",
 	   "prefix": "MP-OpenAPI imports",

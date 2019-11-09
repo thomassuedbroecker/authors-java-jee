@@ -14,9 +14,7 @@ import javax.ws.rs.QueryParam;
 ************ */
 public class GetAuthor {
 
-	@GET
-	@Path("/getauthor")
-	@Produces(MediaType.APPLICATION_JSON)
+
 	/*
 	@APIResponses(value = {
 		@APIResponse(
