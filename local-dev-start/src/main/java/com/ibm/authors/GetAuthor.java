@@ -1,7 +1,8 @@
 package com.ibm.authors;
 
-import javax.json.JsonObject;
-import javax.json.Json;
+// JSON-B
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
 // JAX-RS
 import javax.ws.rs.*;
@@ -48,23 +49,15 @@ public class GetAuthor {
 			schema = @Schema(type = SchemaType.STRING))*/
 			@QueryParam("name") String name) {
 			
-			Author author = new Author();
-			author.name = "Niklas Heidloff";			
-			author.twitter = "https://twitter.com/nheidloff";
-			author.blog = "http://heidloff.net";
+			Jsonb jsonb = JsonbBuilder.create();
+			String json = jsonb.toJson(author); 
+			Author author = new Author("Niklas Heidloff", 
+									   "https://twitter.com/nheidloff", 
+									   "http://heidloff.net");
+			json = jsonb.toJson(author); 
 
 			System.out.println("... send getAuthor response");
 
 			return Response.ok(this.createJson(author)).build();
-	}
-	
-	private JsonObject createJson(Author author) {
-		
-		JsonObject output = Json.createObjectBuilder().add("name", author.name).add("twitter", author.twitter)
-				.add("blog", author.blog).build();
-
-		System.out.println("... create json object for Author");
-
-		return output;
 	}
 }

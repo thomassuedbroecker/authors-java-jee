@@ -12,6 +12,43 @@
 		 ],
 		 "description": "JAVA-constructor-public"
 	},
+	
+	"JAVA-author-constructor-get-set": {
+		"scope": "java",
+		"prefix": "JAVA-author-constructor-get-set",
+		"body": [
+		"  public Author (String thename, String theblog, String thetwitter) {",
+		"   name = thename;",
+		"   blog = theblog;",
+		"   twitter = thetwitter;"
+		"  }",
+		"",
+		" $BLOCK_COMMENT_START*",
+	    " * @return the blog",
+	    " $BLOCK_COMMENT_END",
+	    " public String getBlog() { return blog; }",
+	    " $BLOCK_COMMENT_START*",
+	    " * @return the name",
+	    " $BLOCK_COMMENT_END",
+	    " public String getName() { return name; }",
+	    " $BLOCK_COMMENT_START*",
+	    " * @return the twitter",
+	    " $BLOCK_COMMENT_END",
+	    " public String getTwitter() { return twitter;}",
+	    " $BLOCK_COMMENT_START*",
+	    " * @param blog the blog to set",
+	    " $BLOCK_COMMENT_END",
+	    " public void setBlog(String blog) { this.blog = blog;}",
+	    " $BLOCK_COMMENT_START*",
+	    " * @param name the name to set",
+	    " $BLOCK_COMMENT_END",
+	    " public void setName(String name) { this.name = name; }",
+	    " $BLOCK_COMMENT_START*",
+	    " * @param twitter the twitter to set",
+	    " $BLOCK_COMMENT_END",
+		" public void setTwitter(String twitter) { this.twitter = twitter;}"], 
+		"description": "JAVA-author-constructor-get-set"
+	},
 	// **********************
 	// Microprofile
 	// **********************
