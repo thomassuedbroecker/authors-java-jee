@@ -9,10 +9,9 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @Path("/getauthor")
 @RegisterRestClient
-    
 public interface AuthorClient {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAuthor(@QueryParam("name") String name);
+    public Author getAuthor(@QueryParam("name") String name);
 }
