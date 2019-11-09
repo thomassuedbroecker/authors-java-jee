@@ -17,11 +17,11 @@
 		"scope": "java",
 		"prefix": "JAVA-author-constructor-get-set",
 		"body": [
-		"  public Author (String thename, String theblog, String thetwitter) {",
+		" public Author (String thename, String theblog, String thetwitter) {",
 		"   name = thename;",
 		"   blog = theblog;",
-		"   twitter = thetwitter;"
-		"  }",
+		"   twitter = thetwitter;",
+		" }",
 		"",
 		" $BLOCK_COMMENT_START*",
 	    " * @return the blog",
