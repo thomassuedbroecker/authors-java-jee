@@ -1,6 +1,5 @@
 package com.ibm.authors;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.json.JsonObject;
 import javax.json.Json;
 
@@ -10,8 +9,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.QueryParam;
 
 
-
-@ApplicationScoped
 @Path("/getauthor")
 /* ************
 @OpenAPIDefinition(info = @Info(title = "Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
