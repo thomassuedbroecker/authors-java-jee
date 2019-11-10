@@ -49,15 +49,16 @@ public class GetAuthor {
 			schema = @Schema(type = SchemaType.STRING))*/
 			@QueryParam("name") String name) {
 			
-			Jsonb jsonb = JsonbBuilder.create();
-			String json = jsonb.toJson(author); 
 			Author author = new Author("Niklas Heidloff", 
 									   "https://twitter.com/nheidloff", 
 									   "http://heidloff.net");
-			json = jsonb.toJson(author); 
+			
+			Jsonb jsonb = JsonbBuilder.create();
+			String author_json = jsonb.toJson(author); 
+			author_json = jsonb.toJson(author); 
 
 			System.out.println("... send getAuthor response");
 
-			return Response.ok(this.createJson(author)).build();
+			return Response.ok(author_json).build();
 	}
 }
