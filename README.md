@@ -69,9 +69,9 @@ _A VS Code extension for Liberty dev mode. The extension will detect your Libert
 
 VS Code extensions:
 
-* [java extenson pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+* [java extension pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
 
-    This extion also includes follwing extensions:
+    This extension also includes follwing extensions:
 
     * [vscode-java-debug](https://code.visualstudio.com/docs/java/java-debugging) and Configure attach to port '7777'
 
