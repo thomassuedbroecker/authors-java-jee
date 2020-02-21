@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.QueryParam;
 
 /* ************
-@OpenAPIDefinition(info = @Info(title = "Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/IBM/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
+@OpenAPIDefinition(info = @Info(title = "Get started - Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/IBM/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
 ************ */
 public class GetAuthor {
 
