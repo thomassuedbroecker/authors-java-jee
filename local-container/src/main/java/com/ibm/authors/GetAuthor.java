@@ -55,7 +55,7 @@ public class GetAuthor {
 	public Response getAuthor(@Parameter(
             description = "The unique name of the author",
             required = true,
-            example = "Niklas Heidloff container development,
+            example = "Niklas Heidloff container development",
             schema = @Schema(type = SchemaType.STRING))
 			@QueryParam("name") String name) {
 		
