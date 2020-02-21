@@ -81,7 +81,7 @@ VS Code extensions:
 
 * [liberty dev](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
 
-
+* [Use of user defined snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets) in local-dev-start->.vscode->GetAuthors.code-snippets
 
 
 
