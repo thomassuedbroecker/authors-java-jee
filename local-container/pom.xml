@@ -9,8 +9,8 @@
 	
     <properties>
         <!-- Compiler -->
-		<maven.compiler.source>1.11</maven.compiler.source>
-		<maven.compiler.target>1.11</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -38,7 +38,7 @@
 				<!-- tag::libertyMavenConfiguration[] -->
 				<configuration>
                 	<serverName>authorsDevServerOnContainer</serverName>
-					<configFile>liberty/server.xml</configFile>
+					<configFile>liberty/server-container.xml</configFile>
             	</configuration>
 				<!-- end::libertyMavenConfiguration[] -->
             </plugin>
