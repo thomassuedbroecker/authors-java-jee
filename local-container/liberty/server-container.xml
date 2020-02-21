@@ -2,11 +2,10 @@
 <server description="OpenLiberty Server">
 	
     <featureManager>
-        <feature>webProfile-8.0</feature>
-        <feature>microProfile-2.1</feature>
+        <feature>microProfile-3.2</feature>
     </featureManager>
      
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>
 
-    <webApplication location="authors.war" contextRoot="api"/>
+    <webApplication location="authors-container.war" contextRoot="api"/>
 </server>

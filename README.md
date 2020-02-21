@@ -61,7 +61,7 @@ To do that what you see in the gif, you need to
 	</build>
 ```
 
-* Add the [liberty dev extension](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext) 
+- Add the [liberty dev extension](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext) 
 
 _A VS Code extension for Liberty dev mode. The extension will detect your Liberty Maven project if it detects the **io.openliberty.tools:liberty-maven-plugin** .. in the pom.xml. Through the **Liberty Dev Dashboard explorer** on the side bar, you can start, stop, or interact with dev mode on all available Liberty dev projects in your workspace._
 
@@ -79,9 +79,17 @@ VS Code extensions:
 
     * [maven for java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-maven)
 
+# Visual Studio - OpenLiberty extention
+
 * [liberty dev](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
 
+# Visual Studio - code snippets
+
 * [Use of user defined snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets) in local-dev-start->.vscode->GetAuthors.code-snippets
+
+# Visual Studio - Remote Development
+
+Here is a good blog post [Java development environments with containers](https://medium.com/@brunoborges/java-dev-environments-with-containers-66d6797b2753)
 
 
 

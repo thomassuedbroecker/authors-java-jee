@@ -1,19 +1,18 @@
-FROM maven:3.5-jdk-8 as BUILD
+FROM maven:3.5-jdk-8
  
 COPY src /usr/src/app/src
 COPY pom.xml /usr/src/app
-
-# RUN mvn -version
 RUN mvn -f /usr/src/app/pom.xml clean package
 
-FROM open-liberty:microProfile2-java11
+
+FROM open-liberty:19.0.0.9-kernel-java11
 
 COPY liberty/server.xml /config/
-# for debugging
-COPY liberty-opentracing-zipkintracer /opt/ol/wlp/usr/
 
-COPY --from=BUILD /usr/src/app/target/authors.war /config/apps/
+COPY --from=0 /usr/src/app/target/authors.war /config/apps/
 
+# This script will add the requested XML snippets, grow image to be fit-for-purpose and apply interim fixes
+# https://github.com/WASdev/ci.docker
+RUN configure.sh
 
 EXPOSE 3000
-EXPOSE 9411

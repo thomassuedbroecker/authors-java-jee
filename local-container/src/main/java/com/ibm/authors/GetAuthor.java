@@ -22,15 +22,13 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
-
-
 @ApplicationScoped
 @Path("/getauthor")
-// @OpenAPIDefinition(info = @Info(title = "Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
+@OpenAPIDefinition(info = @Info(title = "Authors Service container development", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
 public class GetAuthor {
 
 	@GET
-	/*
+
 	@APIResponses(value = {
 		@APIResponse(
 	      responseCode = "404",
@@ -53,12 +51,11 @@ public class GetAuthor {
 		    summary = "Get specific author",
 		    description = "Get specific author"
 	)
-	*/
 
 	public Response getAuthor(@Parameter(
             description = "The unique name of the author",
             required = true,
-            example = "Niklas Heidloff",
+            example = "Niklas Heidloff container development,
             schema = @Schema(type = SchemaType.STRING))
 			@QueryParam("name") String name) {
 		

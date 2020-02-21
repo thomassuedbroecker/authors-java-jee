@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ibm.cloud</groupId>
-	<artifactId>authors</artifactId>
+	<artifactId>authors-container</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
@@ -17,22 +17,33 @@
    
 	<dependencies>
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>8.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.eclipse.microprofile</groupId>
 			<artifactId>microprofile</artifactId>
-			<version>2.1</version>
+			<version>3.2</version>
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>authors</finalName>
+		<finalName>authors-container</finalName>
+        <!--Plugins -->
+        <plugins>  
+            <!-- Enable liberty-maven plugin -->
+            <!-- tag::libertyMavenPlugin[] -->
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+				<version>3.1</version>
+				<!-- tag::libertyMavenConfiguration[] -->
+				<configuration>
+                	<serverName>authorsDevServerOnContainer</serverName>
+					<configFile>liberty/server.xml</configFile>
+            	</configuration>
+				<!-- end::libertyMavenConfiguration[] -->
+            </plugin>
+            <!-- end::libertyMavenPlugin[] -->
+            <!-- Enable liberty-maven-plugin -->
+        </plugins>
 	</build>
-
 </project>
