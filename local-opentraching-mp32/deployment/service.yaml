@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: authors-mp3-openshift
+  labels:
+    app: authors-mp3-openshift
+spec:
+  selector:
+    app: authors-mp3-openshift
+  ports:
+    - port: 3000
+      name: http
+  type: NodePort
+---

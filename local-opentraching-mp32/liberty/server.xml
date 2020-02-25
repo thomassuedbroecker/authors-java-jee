@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="OpenLiberty Server">
+	
+    <featureManager>
+        <feature>webProfile-8.0</feature>
+        <feature>microProfile-3.2</feature>
+        <!-- tag::zipkinUsr[] -->
+        <feature>usr:opentracingZipkin-0.31</feature>
+        <!-- end::zipkinUsr[] -->
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>
+
+    <webApplication location="authors-mp3-openshift.war" contextRoot="api"/>
+
+    <logging messageFormat="json" messageSource="message,trace,accessLog,ffdc,audit" />
+
+</server>
