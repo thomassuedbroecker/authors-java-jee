@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<server description="OpenLiberty Server">
+<server description="OpenLiberty Server-junit">
 	
     <featureManager>
-        <feature>microProfile-2.1</feature>
+        <feature>microProfile-3.2</feature>
     </featureManager>
      
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>

@@ -9,6 +9,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.QueryParam;
 
+// JSON-B
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+
 // OPEN API
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -25,11 +29,10 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 
 @ApplicationScoped
 @Path("/getauthor")
-// @OpenAPIDefinition(info = @Info(title = "Authors Service", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
+@OpenAPIDefinition(info = @Info(title = "Authors Service - JUnit Tests", version = "1.0", description = "Authors Service APIs", contact = @Contact(url = "https://github.com/nheidloff/cloud-native-starter", name = "Niklas Heidloff"), license = @License(name = "License", url = "https://github.com/nheidloff/cloud-native-starter/blob/master/LICENSE")))
 public class GetAuthor {
 
 	@GET
-	/*
 	@APIResponses(value = {
 		@APIResponse(
 	      responseCode = "404",
@@ -52,7 +55,6 @@ public class GetAuthor {
 		    summary = "Get specific author",
 		    description = "Get specific author"
 	)
-	*/
 
 	public Response getAuthor(@Parameter(
             description = "The unique name of the author",
@@ -60,24 +62,19 @@ public class GetAuthor {
             example = "Niklas Heidloff",
             schema = @Schema(type = SchemaType.STRING))
 			@QueryParam("name") String name) {
-		
-			Author author = new Author();
-			author.name = "Niklas Heidloff";
-			author.twitter = "https://twitter.com/nheidloff";
-			author.blog = "http://heidloff.net";
+			
+			System.out.println("... Requested name: " + name);
+			
+			Author author = new Author("Niklas Heidloff", 
+									   "https://twitter.com/nheidloff", 
+									   "http://heidloff.net");
+			
+			Jsonb jsonb = JsonbBuilder.create();
+			String author_json = jsonb.toJson(author); 
+			author_json = jsonb.toJson(author); 
 
 			System.out.println("... send getAuthor response");
 
-			return Response.ok(this.createJson(author)).build();
-	}
-
-	private JsonObject createJson(Author author) {
-		
-		JsonObject output = Json.createObjectBuilder().add("name", author.name).add("twitter", author.twitter)
-				.add("blog", author.blog).build();
-
-		System.out.println("... create json object for Author");
-
-		return output;
+			return Response.ok(author_json).build();
 	}
 }
