@@ -63,6 +63,13 @@
 			<version>5.6.0</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>5.6.0</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- JUnit Test -->
 
 		<!-- JUnit Test and JSONB--> 
@@ -71,6 +78,7 @@
 			<groupId>javax.json</groupId>
 			<artifactId>javax.json-api</artifactId>
 			<version>1.1.4</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse</groupId>
@@ -115,6 +123,16 @@
 				<!-- libertyMavenConfiguration -->
             </plugin>
             <!-- Enable liberty-maven-plugin -->
+			<!-- JUNIT https://junit.org/junit5/docs/current/user-guide/#running-tests-ide-vscode -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<!-- JUNIT https://junit.org/junit5/docs/current/user-guide/#running-tests-ide-vscode -->
         </plugins>
 	</build>
 
