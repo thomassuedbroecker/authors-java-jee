@@ -36,9 +36,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class Test_GetAuthors {
     @Inject
     @RestClient
-    //@Test
     @DisplayName("Test Authors.getAuthor()")
-    // @ParameterizedTest //(name = "{0},{1}")
     @ParameterizedTest(name = "{index} => name=''{0},{1}''")
     @CsvSource({"Thomas,Thomas Suedbroecker",
                 "Niklas,Niklas Heidloff",
