@@ -74,16 +74,17 @@ public class GetAuthor {
 				"http://suedbrocker.net");
 			} else {
 				System.out.println("... [Author] Requested name result: Anything else");
-				author = new Author("Niklas Heidloff", 
-									"https://twitter.com/nheidloff", 
-									"http://heidloff.net");
+				author = new Author(
+				"Niklas Heidloff", 
+				"https://twitter.com/nheidloff", 
+				"http://heidloff.net");
 			};
 
 			Jsonb jsonb = JsonbBuilder.create();
 			String author_json = jsonb.toJson(author); 
 			author_json = jsonb.toJson(author); 
 
-			System.out.println("... [Author] send getAuthor response");
+			System.out.println("... [Author] send getAuthor response" + author_json.toString());
 
 			return Response.ok(author_json).build();
 	}
