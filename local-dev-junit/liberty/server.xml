@@ -12,4 +12,6 @@
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>
 
     <webApplication location="authors-junit.war" contextRoot="api"/>
+
+    <logging messageFormat="json" messageSource="message,trace,accessLog,ffdc,audit" />
 </server>
