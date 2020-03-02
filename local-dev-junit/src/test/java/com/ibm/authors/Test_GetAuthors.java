@@ -22,6 +22,9 @@ import java.net.URLEncoder;
 // JSON-B
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+// import javax.json.bind.adapter.JsonbAdapter;
+import javax.json.bind.*;
+
 
 
 // JAX-RS
@@ -48,26 +51,29 @@ public class Test_GetAuthors {
             String the_request = URLEncoder.encode(requestURL, "UTF-8").replace("+", "%20");
             URI baseURI = URI.create(BASE_URL);
             
-            System.out.println("TEST -> Create RestClient");AuthorTestClient authorClient = RestClientBuilder.newBuilder().baseUri(baseURI).register(ExceptionMapperAuthors.class).build(AuthorTestClient.class);
+            System.out.println("[TEST] -> Create RestClient");AuthorTestClient authorClient = RestClientBuilder.newBuilder().baseUri(baseURI).register(ExceptionMapperAuthors.class).build(AuthorTestClient.class);
 
-            System.out.println("TEST baseURI -> Invoke GetAuthor");         
+            System.out.println("[TEST] -> Invoke GetAuthor");         
             
             // pure response result
             String result = authorClient.getAuthor(the_request
             );
-            System.out.println("Author string - result: " + result);
+            System.out.println("[TEST] Author string - result: " + result);
 
             // create json from result
-            Jsonb jsonb = JsonbBuilder.create();
+            JsonbConfig config = new JsonbConfig().withAdapters(new AuthorAdapter());
+            Jsonb jsonb = JsonbBuilder.create(config);
             Author author_json = jsonb.fromJson(result, Author.class);
-            System.out.println("Result name: " + author_json.getName());
             
-            Assertions.assertAll(author_json.getName());
+            System.out.println("[TEST] Result name: " + author_json.getName());
+            
+            Assertions.assertEquals("Niklas Heidloff",
+            author_json.getName(),"Not the expected value: Niklas Heidloff");
         
         } catch (UnsupportedEncodingException e) {
             System.out.println("UnsupportedEncodingException: "+ e.toString());
         } catch (Exception e) {
-            System.out.println("Exception: "+ e.toString());
+            System.out.println("[Exception] " + e.toString());
         }
     }
 }
