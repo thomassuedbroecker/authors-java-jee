@@ -1,8 +1,6 @@
 package com.ibm.authors;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.json.JsonObject;
-import javax.json.Json;
 
 // JAX-RS
 import javax.ws.rs.*;

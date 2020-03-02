@@ -49,6 +49,26 @@
 			<version>5.0.3</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- JUnit Test and JSONB--> 
+		<dependency>
+			<groupId>javax.json.bind</groupId>
+			<artifactId>javax.json.bind-api</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>yasson</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -61,6 +81,7 @@
 			<version>3.8.0</version>
 			<scope>test</scope>
 		</dependency>
+		-->
 		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-rs-mp-client -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -74,7 +95,7 @@
 		<finalName>authors-junit</finalName>
         <!--Plugins -->
         <plugins>  
-		    <plugin>
+			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -100,6 +121,7 @@
             </plugin>
             <!-- end::libertyMavenPlugin[] -->
             <!-- Enable liberty-maven-plugin -->
+			<!--
 			<plugin>
 				<artifactId>maven-sureface-plugin</artifactId>
 				<version>2.19.1</version>
@@ -111,6 +133,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			-->
         </plugins>
 	</build>
 
