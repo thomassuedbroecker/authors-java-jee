@@ -12,7 +12,7 @@ public class Author {
 	@JsonbProperty(nillable = true)
 	private String blog;
 	
-	Author () { 
+	public Author () { 
     };
 
 	public Author (String thename, String theblog, String thetwitter) { name = thename;

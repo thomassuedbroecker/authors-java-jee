@@ -1,9 +1,12 @@
-package com.ibm.authors;
+package authortests;
+
+import com.ibm.authors.Author;
 
 // https://www.tomitribe.com/blog/overview-of-microprofile-rest-client/
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+
 
 import java.io.UnsupportedEncodingException;
 // Java
@@ -51,8 +54,9 @@ public class Test_GetAuthors {
             Jsonb jsonb = JsonbBuilder.create(config);
             Author author_json = jsonb.fromJson(result, Author.class);
             
-            System.out.println("[TEST] Result name: " + author_json.getName());
-            
+            System.out.println("[TEST] author_json.class : " + author_json.toString());
+            System.out.println("[TEST] author_json.name : " + author_json.getName());
+          
             Assertions.assertEquals("Niklas Heidloff",
             author_json.getName(),"Not the expected value: Niklas Heidloff");
         

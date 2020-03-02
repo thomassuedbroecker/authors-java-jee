@@ -1,4 +1,4 @@
-package com.ibm.authors;
+package authortests;
 
 public class NonexistentAuthor extends RuntimeException {
 

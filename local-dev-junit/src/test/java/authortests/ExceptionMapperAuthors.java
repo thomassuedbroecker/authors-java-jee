@@ -1,4 +1,4 @@
-package com.ibm.authors;
+package authortests;
 
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;

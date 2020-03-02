@@ -1,4 +1,4 @@
-package com.ibm.authors;
+package authortests;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;

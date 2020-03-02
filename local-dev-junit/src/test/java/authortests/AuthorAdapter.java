@@ -1,4 +1,6 @@
-package com.ibm.authors;
+package authortests;
+
+import com.ibm.authors.Author;
 
 // JSON-B
 import javax.json.bind.adapter.JsonbAdapter;
