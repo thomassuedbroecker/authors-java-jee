@@ -2,6 +2,9 @@ package com.ibm.authors;
 
 import javax.enterprise.context.ApplicationScoped;
 
+// Verify Strings
+import java.util.Objects;
+
 // JAX-RS
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -61,17 +64,26 @@ public class GetAuthor {
             schema = @Schema(type = SchemaType.STRING))
 			@QueryParam("name") String name) {
 			
-			System.out.println("... Requested name: " + name);
+			Author author = null;
+			System.out.println("... [Author] Requested input name: " + name);
 			
-			Author author = new Author("Niklas Heidloff", 
-									   "https://twitter.com/nheidloff", 
-									   "http://heidloff.net");
-			
+			if (Objects.equals("Thomas", name)) {
+				System.out.println("... [Author] Requested name result: Thomas");
+				author = new Author("Thomas Suedbroecker", 
+				"https://twitter.com/tsuedbroecker", 
+				"http://suedbrocker.net");
+			} else {
+				System.out.println("... [Author] Requested name result: Anything else");
+				author = new Author("Niklas Heidloff", 
+									"https://twitter.com/nheidloff", 
+									"http://heidloff.net");
+			};
+
 			Jsonb jsonb = JsonbBuilder.create();
 			String author_json = jsonb.toJson(author); 
 			author_json = jsonb.toJson(author); 
 
-			System.out.println("... send getAuthor response");
+			System.out.println("... [Author] send getAuthor response");
 
 			return Response.ok(author_json).build();
 	}

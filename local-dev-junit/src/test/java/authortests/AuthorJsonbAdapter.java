@@ -9,7 +9,7 @@ import javax.json.bind.adapter.JsonbAdapter;
 import javax.json.JsonObject;
 import javax.json.Json;
 
-public class AuthorAdapter implements JsonbAdapter<Author, JsonObject> {
+public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
  
     @Override
     public JsonObject adaptToJson(final Author author) throws Exception {

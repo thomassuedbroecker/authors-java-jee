@@ -34,7 +34,8 @@ public class Test_GetAuthors {
     @Test
     public void testGetAuthor() throws MalformedURLException {
         String BASE_URL = "http://localhost:3000/api/v1/";
-        String requestURL = BASE_URL + "getauthor?name=Thomas";
+        String name = "Thomas";
+        String requestURL = BASE_URL + "getauthor?name=" + name;
 
         try {
             String the_request = URLEncoder.encode(requestURL, "UTF-8").replace("+", "%20");
@@ -45,12 +46,11 @@ public class Test_GetAuthors {
             System.out.println("[TEST] -> Invoke GetAuthor");         
             
             // pure response result
-            String result = authorClient.getAuthor(the_request
-            );
+            String result = authorClient.getAuthor(name);
             System.out.println("[TEST] Author string - result: " + result);
 
             // create json from result
-            JsonbConfig config = new JsonbConfig().withAdapters(new AuthorAdapter());
+            JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
             Jsonb jsonb = JsonbBuilder.create(config);
             Author author_json = jsonb.fromJson(result, Author.class);
             
