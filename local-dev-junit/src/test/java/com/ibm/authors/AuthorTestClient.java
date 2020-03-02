@@ -14,5 +14,5 @@ public interface AuthorTestClient {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Json getAuthor(@QueryParam("name") String name) throws NonexistentAuthor;
+    public String getAuthor(@QueryParam("name") String name);
 }
