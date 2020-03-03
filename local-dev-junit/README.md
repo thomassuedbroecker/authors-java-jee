@@ -1,6 +1,22 @@
 **!!! UNDER CONSTRUCTION !!!**
 
-# JUnit Testing with MircoProfile
+# JUnit Testing on OpenLiberty development server, running a microservice based on MircoProfile 
+
+Just some technical basics of, how to develop a JUnit for our Author microservice of the Cloud Native Starter example.
+
+* IDE: Visual Studio Code
+* Server: Open Liberty
+* Framework: MicroProfie
+
+Need to know:
+
+* How to create a REST Client with MicroProfile JAX-RS?
+* How to convert JSON Data from a String in a Java Class with MicroProfile JSON-B?
+* How to setup and run JUnit tests on the OpenLiberty development server?
+* How to configure parameterized test in JUnit?
+* How to compare and report results in JUnit?
+
+
 
 ## MicroProfile RestClient
 
