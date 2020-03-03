@@ -109,7 +109,7 @@
 				<!-- libertyMavenConfiguration -->
             </plugin>
             <!-- Enable liberty-maven-plugin -->
-			<!-- JUNIT https://junit.org/junit5/docs/current/user-guide/#running-tests-ide-vscode -->
+			<!-- JUNIT -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
@@ -118,7 +118,7 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.22.2</version>
 			</plugin>
-			<!-- JUNIT https://junit.org/junit5/docs/current/user-guide/#running-tests-ide-vscode -->
+			<!-- JUNIT -->
         </plugins>
 	</build>
 
