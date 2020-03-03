@@ -9,6 +9,7 @@ Technical basics for how to develop a JUnit for our Author microservice of the C
 * IDE: Visual Studio Code
 * Server: Open Liberty
 * Framework: MicroProfie
+* Maven: Java project organization
 
 **Need to know**
 
@@ -18,12 +19,45 @@ Technical basics for how to develop a JUnit for our Author microservice of the C
 4. How to configure parameterized test in JUnit?
 5. How to compare and report results in JUnit?
 
+---
+
 # How to setup and run JUnit tests on the OpenLiberty development server?
 
 When you setup JUnit test to run directly on the same OpenLiberty server as the microservice application you have to provide a `test` folder in the `src` folder. The image below shows the folders of that project.
 
-![open-liberty-junit-01-folderstructure](images/pen-liberty-junit-01-folderstructure.png)
+![open-liberty-junit-01-folderstructure](images/open-liberty-junit-01-folderstructure.png)
 
+In the `pom.xml` file you need to add the JUnit depencencies.
+The `junit-jupiter-api` and the `junit-jupiter-engine`are the basics. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
+
+```xml
+	<!-- JUnit Test --> 
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-api</artifactId>
+		<version>5.6.0</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-engine</artifactId>
+		<version>5.6.0</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-params</artifactId>
+		<version>5.6.0</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- JUnit Test -->
+```
+
+---
+
+# Additional resources
 
 ## MicroProfile RestClient
 
