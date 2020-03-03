@@ -2,22 +2,26 @@
 
 # JUnit Testing on OpenLiberty development server, running a microservice based on MircoProfile 
 
-Technical basics for how to develop a JUnit for our Authors microservice of the Cloud Native Starter example.
+The project does only contain technical basics: how to develop a JUnit for the Authors microservice of the Cloud Native Starter example.
 
-The Authors microservice has one RESTful api endpoint `getAuthor` with one parameter for the name of the Author. That endpoint returns Author data in a JSON format, based on given name in the parameter.
+The Authors microservice has one RESTful api endpoint called `getAuthor`. The endpoint provides one parameter for the Author name. The endpoint returns Author data in a JSON format.
 
-To invoke that endpoint we need a REST Client and we need to transform the JSON result in a Author data class.
+These are the steps we need to understand and to realize:
 
-Next we need to handle different values to for the parameter of the Author name, to run tests with a variations of names.
+1. To invoke that REST endpoint of the Authors microservice we need a REST Client.
 
-Then we need to verify the actual against the expected value and document the result.
+2. Then we need to transform the JSON response to a Author data class. 
 
-**Need to know**
+3. Next we need to handle different values to invoke different values for the parameter of the Author name, to run tests with a variations of names.
+
+4. Then we need to verify the actual value against the expected value and document the result.
+
+**To realize what we want to do, we need to know**
 
 1. How to setup and run JUnit tests on the OpenLiberty development server?
-2. How to convert JSON Data from a String in a Java Class with MicroProfile JSON-B?
-3. How to create a REST Client with MicroProfile JAX-RS?
-4. How to configure parameterized test in JUnit?
+2. How to convert JSON Data from a String in a Author Java instance with JSON-B (MicroProfile)?
+3. How to create a REST Client with JAX-RS (MicroProfile)?
+4. How to configure parameterized a test in JUnit?
 5. How to compare and report results in JUnit?
 
 **Tools and frameworks**
@@ -25,20 +29,20 @@ Then we need to verify the actual against the expected value and document the re
 * IDE: Visual Studio Code
 * Server: Open Liberty
 * Framework: MicroProfie
-* Maven: Java project organization
+* Java project organization: Maven
 
 ---
 
 # How to setup and run JUnit tests on the OpenLiberty development server?
 
-To setup JUnit tests to run directly on the same OpenLiberty server as the microservice application you have to provide a `test` folder in the `src` folder. The image below shows the folders of that project.
+To setup JUnit tests and run them directly on the same OpenLiberty server as the microservice application, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
 
 ![open-liberty-junit-01-folderstructure](images/open-liberty-junit-01-folderstructure.png)
 
 In the `pom.xml` file you need to add the JUnit depencencies.
-The `junit-jupiter-api` and the `junit-jupiter-engine`are the basics. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
+The `junit-jupiter-api` and the `junit-jupiter-engine` which are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
 
-Here are the needed depencencies.
+Here are the needed depencencies for JUnit in the `pom.xml`.
 
 ```xml
 	<!-- JUnit Test --> 
@@ -78,6 +82,7 @@ To run the development server with maven, we also add the serAlso the
 	</plugin>
 	<!-- JUNIT -->
 ```
+
 To start the OpenLiberty server later with maven we add the `liberty-maven-plugin` to the `pom.xml` file.
 
 ```xml
@@ -96,11 +101,13 @@ To start the OpenLiberty server later with maven we add the `liberty-maven-plugi
     <!-- Enable liberty-maven-plugin -->
 ```
 
-# How to convert JSON Data from a String in a Java Class with MicroProfile JSON-B?
+---
 
-When we get the result of the response of our endpoint `getAuthor` we got the data in a JSON format, but we what to handle the data of an Author in a Author class.
+# How to convert JSON Data from a String in a Java Class with JSON-B?
 
-With Json-b we can define a JsonbAdapter class and overwritee the operations `adaptToJson` and `adaptFromJson`. 
+When we get the result of the response of our endpoint `getAuthor` we got the data in a JSON format, but we want use data in an instance of a Author class.
+
+With Json-b we can define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) class and override the operations `adaptToJson` and `adaptFromJson`. 
 In the operation`adaptFromJson` we define how to create a Author object a JSON object.
 
 ```java
@@ -130,6 +137,32 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
         author.setTwitter(jsonObject.getString("twitter"));
         return author;
     }
+}
+```
+
+---
+
+# How to create a REST Client with JAX-RS (MicroProfile)?
+
+Here you see the REST Client interface definition of the REST Endpoint of our Authors microservice.
+
+I want to highlight that, here we define our expected return value for of the Authors microservice response with a `String
+
+```java
+import javax.ws.rs.Path;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.QueryParam;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+@Path("/getauthor")
+@RegisterRestClient
+public interface AuthorTestClient {
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAuthor(@QueryParam("name") String name);
 }
 ```
 
