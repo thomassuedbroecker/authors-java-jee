@@ -8,6 +8,6 @@ import javax.ws.rs.ApplicationPath;
 public class AuthorsApplication extends Application {
     
     public AuthorsApplication(){
-        System.out.println("... start AuthorsApplication");
+        System.out.println("... [Author] start AuthorsApplication");
 	}
 }

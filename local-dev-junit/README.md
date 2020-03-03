@@ -2,6 +2,10 @@
 
 # JUnit Testing with MircoProfile
 
+## MicroProfile RestClient
+
+* [Tomitribe (Blog post)](https://www.tomitribe.com/blog/overview-of-microprofile-rest-client/)
+
 ## JUnit
 
 Useful blog posts:
