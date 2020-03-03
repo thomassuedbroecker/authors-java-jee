@@ -3,9 +3,6 @@
 	
     <featureManager>
         <feature>microProfile-3.2</feature>
-        <!-- tag::zipkinUsr[] -->
-        <feature>usr:opentracingZipkin-0.31</feature>
-        <!-- end::zipkinUsr[] -->
     </featureManager>
      
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="3000" httpsPort="9443"/>
