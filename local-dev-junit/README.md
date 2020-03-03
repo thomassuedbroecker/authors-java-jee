@@ -40,7 +40,7 @@ To setup JUnit tests and run them directly on the same OpenLiberty server as the
 ![open-liberty-junit-01-folderstructure](images/open-liberty-junit-01-folderstructure.png)
 
 In the `pom.xml` file you need to add the JUnit depencencies.
-The `junit-jupiter-api` and the `junit-jupiter-engine` which are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
+The `junit-jupiter-api` and the `junit-jupiter-engine` are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
 
 Here are the needed depencencies for JUnit in the `pom.xml`.
 
@@ -68,7 +68,6 @@ Here are the needed depencencies for JUnit in the `pom.xml`.
 ```
 
 Here are the needed plugins for the build `maven-surefire-plugin` and `maven-failsafe-plugin`. 
-To run the development server with maven, we also add the serAlso the 
 
 ```xml
     <!-- JUNIT  -->
