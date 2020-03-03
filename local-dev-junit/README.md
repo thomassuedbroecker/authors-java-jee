@@ -8,6 +8,10 @@
 
 ## JUnit
 
+Configure OpenLiberty:
+
+* [Setup Unit Tests in OpenLiberty](https://github.com/OpenLiberty/open-liberty/wiki/Unit-Tests)
+
 Useful blog posts:
 
 * [Adam-Bien (Blog post)](http://www.adam-bien.com/roller/abien/entry/using_microprofile_rest_client_for)
