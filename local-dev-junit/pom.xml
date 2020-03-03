@@ -25,16 +25,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- MicroProfile -->
-
-		<!-- MicroProfile traceing -->
-	    <dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>8.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- MicroProfile traceing -->
-
 		<!-- MicroProfile client-->
 		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-rs-mp-client -->
 		<dependency>
@@ -68,7 +58,7 @@
 		</dependency>
 		<!-- JUnit Test -->
 
-		<!-- JUnit Test and JSONB--> 
+		<!-- JSONB --> 
 		<!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
 		<dependency>
 			<groupId>javax.json</groupId>
@@ -88,7 +78,7 @@
 			<version>1.1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- JUnit Test and JSONB-->
+		<!-- JSONB -->
 	</dependencies>
 
 	<build>

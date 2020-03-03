@@ -20,7 +20,7 @@ Technical basics for how to develop a JUnit for our Author microservice of the C
 
 # How to setup and run JUnit tests on the OpenLiberty development server?
 
-When you setup JUnit test to directly run on the same OpenLiberty server as your microservice application you have to provide a `test` folder in the `src` folder. The image below shows the folders of that project.
+When you setup JUnit test to run directly on the same OpenLiberty server as the microservice application you have to provide a `test` folder in the `src` folder. The image below shows the folders of that project.
 
 ![open-liberty-junit-01-folderstructure](images/pen-liberty-junit-01-folderstructure.png)
 
