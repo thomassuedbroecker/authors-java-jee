@@ -84,7 +84,7 @@ public class GetAuthor {
 			String author_json = jsonb.toJson(author); 
 			author_json = jsonb.toJson(author); 
 
-			System.out.println("... [Author] send getAuthor response" + author_json.toString());
+			System.out.println("... [Author] send getAuthor response: " + author_json.toString());
 
 			return Response.ok(author_json).build();
 	}

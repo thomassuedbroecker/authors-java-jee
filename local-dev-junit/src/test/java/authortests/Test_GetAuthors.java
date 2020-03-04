@@ -50,11 +50,11 @@ public class Test_GetAuthors {
         // use the getAuthors response to create a json and the a Author class instance
         System.out.println("[JUNIT-TEST] -> Create Jsonb config based on Adapter");
         final JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
-        System.out.println("[JUNIT-TEST] ->  Create Jsonb Object");
+        System.out.println("[JUNIT-TEST ->  Create Jsonb Object");
         final Jsonb jsonb = JsonbBuilder.create(config);
-        System.out.println("[JUNIT-TEST] ->  Create Author class instance using Jsonb Object from the response");
+        System.out.println("[JUNIT-TEST]->  Create Author class instance using Jsonb Object from the response");
         final Author author_json = jsonb.fromJson(response, Author.class);
-        System.out.println("[JUNIT-TEST] ->  Created author_json.class : " + author_json.toString());
+        System.out.println("[JUNIT-TEST]->  Created author_json.class : " + author_json.toString());
         System.out.println(
                 "[JUNIT-TEST] -> Access the Auther class instance - author_json.name : " + author_json.getName());
 

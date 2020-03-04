@@ -161,7 +161,7 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
 }
 ```
 As you see in the following code from the class `Test_GetAuthors.java`.
-In a new JSON-B configuration will be created based on the `AuthorJsonbAdapter`. That configuration is utilized to create a JSON-B object. That JSON-B object then contains the implemented operation `fromJson` and knows how to create a instance of a Author class. 
+Based on the `AuthorJsonbAdapter` a new JSON-B configuration is created. That configuration is utilized to create a JSON-B object. That JSON-B object contains the implemented operation `fromJson` and knows how to create a instance of a Author class. 
 
 ```java
     final JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
