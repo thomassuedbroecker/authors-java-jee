@@ -13,7 +13,6 @@ import javax.json.bind.JsonbConfig;
 
 // MicroProfile
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 // JUnit
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +21,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class Test_GetAuthors {
-    @RestClient
+
     @DisplayName("Test Authors.getAuthor()")
     @ParameterizedTest(name = "{index} => name=''{0},{1}''")
     @CsvSource({"Thomas,Thomas Suedbroecker",

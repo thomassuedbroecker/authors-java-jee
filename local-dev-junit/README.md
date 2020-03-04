@@ -129,7 +129,7 @@ We use the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) for t
 
 ---
 
-# 2. How to convert JSON Data from a String to a Author Java instance with JSON-B (MicroProfile)?
+# 2. How to convert JSON Data from a String to a Author Java instance with JSON-B?
 
 When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of a Author class.
 
@@ -196,7 +196,8 @@ Here we add:
 
 # 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-In the following code you see the REST Client interface definition for the REST Endpoint for the Authors microservice. With the usage of MicroProfile a RESTful Client will be created, when we use the that interface to implement the JUnit test.
+In the following code you see the interface class `AuthorTestClient`.
+That class contains the REST Client interface definition for the REST Endpoint of the Authors microservice. With the usage of MicroProfile annotation `@RegisterRestClient` a RESTful Client will be created, when we use the that interface to implement the JUnit test.
 
 I define the expected return value of `getAuthors` response as a `String`. 
 
@@ -219,6 +220,10 @@ public interface AuthorTestClient {
     public String getAuthor(@QueryParam("name") String name);
 }
 ```
+
+## 4. How to configure parameterized a JUnit test?
+
+The class `Test_GetAuthors` implements the JUnit test. With the annotation  
 
 
 ---
