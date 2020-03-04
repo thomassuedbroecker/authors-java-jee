@@ -12,7 +12,7 @@ These are the steps we need to basicly to understand and to realize:
 
 1. We need a REST Client to invoke the REST endpoint of the Authors microservice.
 2. Then we need to transform the JSON response of the REST endpoint to a Author data class. 
-3. We need to handle different values to invoke the REST Endpoint parameter for the Author name, to run tests with a variations of name. 
+3. We need to handle different values to invoke the REST Endpoint parameter for the Author name to run tests with a variations of name. 
 4. Then we need to compare the actual response value with a expected value and document the result.
 
 **To create the JUnit test, we need to know**
@@ -293,11 +293,23 @@ _Note:_ Here we use JSON-B
 
 To compare the actual and expected value we use the assertEquals from JUnit.
 
-https://junit.org/junit4/javadoc/latest/org/junit/Assert.html
-
 ```java
-        assertEquals(expectedResult, author_json.getName());
+     assertEquals(expectedResult, author_json.getName());
 ```
+
+If a the values aren't equal a`ssertEquals` throws a `AssertionFailedError` and document the error in `target/surefire-reports/TEST-authortests.Test_GetAuthors.txt`.
+
+Here a example output:
+
+```
+org.opentest4j.AssertionFailedError: expected: <Michael Heinrich> but was: <Niklas Heidloff>
+	at authortests.Test_GetAuthors.testGetAuthor(Test_GetAuthors.java:60)
+```
+
+For more details see in the [JUnit documentation](https://junit.org/junit4/javadoc/latest/org/junit/Assert.html)
+
+
+
 
 
 
