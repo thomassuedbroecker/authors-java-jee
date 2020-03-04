@@ -223,7 +223,39 @@ public interface AuthorTestClient {
 
 ## 4. How to configure parameterized a JUnit test?
 
-The class `Test_GetAuthors` implements the JUnit test. With the annotation  
+The class `Test_GetAuthors` implements the JUnit test. 
+
+The test is defined as a `ParameterizedTest` and will be repeated with given values inside the test class.
+
+The annotation `@ParameterizedTest` defines for the test two parameters.
+
+```java
+    @ParameterizedTest(name = "{index} => name=''{0},{1}''")
+```
+
+More details you find here in the [JUnit documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/params/ParameterizedTest.html) and can be repeated by using these input parameters.
+
+The concrete test implementation itself is the operation `testGetAuthor`. The operation contains the names for the parameters defined before , which we use in the test implementation.
+ 
+```java
+public void testGetAuthor(
+			final String authorName, 
+			final String expectedResult)
+```
+
+The annotation `@CsvSource` contains a comma seperated list of values which will for the test execution. 
+
+More details you find here in the [JUnit documentation](https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/params/provider/CsvSource.html). 
+
+The values are in order to fit to parameters `nameAuthor` and `expectedResult`.
+
+```java
+    @CsvSource({"Thomas,Thomas Suedbroecker",
+                "Niklas,Niklas Heidloff",
+                "Michael,Michael Heinrich"
+              }) 
+```
+
 
 
 ---

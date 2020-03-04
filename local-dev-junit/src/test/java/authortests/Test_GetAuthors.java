@@ -23,11 +23,11 @@ public class Test_GetAuthors {
 
     @ParameterizedTest(name = "{index} => name=''{0},{1}''")
     @CsvSource({"Thomas,Thomas Suedbroecker",
-                "Niklas,Niklas Heidloff"//,
-                //"Michael,Michael Heinrich"
+                "Niklas,Niklas Heidloff",
+                "Michael,Michael Heinrich"
               })  
     public void testGetAuthor(
-            final String name, final String expectedResult) {
+            final String nameAuthor, final String expectedResult) {
 
         final String BASE_URL = "http://localhost:3000/api/v1/";
         final URI baseURI = URI.create(BASE_URL);
@@ -38,10 +38,10 @@ public class Test_GetAuthors {
                 .build(AuthorTestClient.class);
 
         // Execute test
-        System.out.println("[JUNIT-TEST] -> Execute test and invoke GetAuthor with parameter value: " + name);
+        System.out.println("[JUNIT-TEST] -> Execute test and invoke GetAuthor with parameter value: " + nameAuthor);
 
         // pure getAuthors response result
-        final String response = authorClient.getAuthor(name);
+        final String response = authorClient.getAuthor(nameAuthor);
         System.out.println("[JUNIT-TEST] -> The getAuthor response : " + response);
 
         // use the getAuthors response to create a json and the a Author class instance
