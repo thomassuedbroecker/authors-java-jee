@@ -196,11 +196,11 @@ Here we add:
 
 # 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-Here you see the REST Client interface definition of the REST Endpoint for the Authors microservice. MicroProfile will create a RESTful Client, when we use the that interface for our JUnit test.
+In the following code you see the REST Client interface definition for the REST Endpoint for the Authors microservice. With the usage of MicroProfile a RESTful Client will be created, when we use the that interface to implement the JUnit test.
 
 I define the expected return value of `getAuthors` response as a `String`. 
 
-As you see most we using only one annotation of MicroProfile `@RegisterRestClient` and remaing annotations are from JAX-RS.
+As you see, there is only one annotation of MicroProfile `@RegisterRestClient` and remaing annotations are from JAX-RS.
 
 ```java
 import javax.ws.rs.Path;
