@@ -1,6 +1,6 @@
 **!!! UNDER CONSTRUCTION !!!**
 
-# Write and run a JUnit test for a microservice based on MircoProfile for the OpenLiberty server in the development mode
+# Write and execute a JUnit test for a Java microservice based on MircoProfile running at the OpenLiberty server in the development mode
 
 The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). It isn't intended to be a blueprint, how to write JUnit tests or to definition test organization, test strategie and so on, it is just to get technically started with one concrete example. 
 
@@ -18,11 +18,11 @@ These are the steps we need to understand and to realize:
 **To create the JUnit test, we need to know**
 
 1. How to setup a JUnit test on the OpenLiberty for the development mode?
-2. How to convert JSON Data from a String in a Author Java instance with JSON-B (MicroProfile)?
+2. How to convert JSON Data from a String to a Author Java instance with JSON-B?
 3. How to create a REST Client with JAX-RS?
 4. How to configure parameterized a JUnit test?
 5. How to define write the concrete parameterized a JUnit test? 
-6. How to run the JUnit test?
+6. How to execute the JUnit test?
 7. How to find results test results ?
 
 **Tools and frameworks**
@@ -129,7 +129,7 @@ We use the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) for t
 
 ---
 
-# 2. How to convert JSON Data from a String in a Author Java instance with JSON-B (MicroProfile)?
+# 2. How to convert JSON Data from a String to a Author Java instance with JSON-B (MicroProfile)?
 
 When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of a Author class.
 
@@ -138,11 +138,11 @@ In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/def
 The operation`adaptFromJson` defines how to create a Author object from a JSON Object.
 
 ```java
+// Author data class
 import com.ibm.authors.Author;
 
-// JSON-B
+// JSON-binding
 import javax.json.bind.adapter.JsonbAdapter;
-// JSON
 import javax.json.JsonObject;
 import javax.json.Json;
 
@@ -182,14 +182,15 @@ Here we add:
 		<scope>test</scope>
 	</dependency>		
 	<!-- JSONB -->
+```
 
 ---
 
-# How to create a REST Client with JAX-RS (MicroProfile)?
+# 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-Here you see the REST Client interface definition of the REST Endpoint of our Authors microservice.
+Here you see the REST Client interface definition of the REST Endpoint for the Authors microservice. MicroProfile will create a RESTful Client, when in the test class will use that interface. Using JAX-RS and MicroProfile RestClient.
 
-I want to highlight that, here we define our expected return value for of the Authors microservice response with a `String
+I define the expected return value for of the Authors microservice response as `String`. 
 
 ```java
 import javax.ws.rs.Path;
@@ -208,6 +209,7 @@ public interface AuthorTestClient {
     public String getAuthor(@QueryParam("name") String name);
 }
 ```
+
 
 ---
 

@@ -1,9 +1,7 @@
 package authortests;
 
+// The Author data structure class from the microservice
 import com.ibm.authors.Author;
-
-// https://www.tomitribe.com/blog/overview-of-microprofile-rest-client/
-import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 // Java
 import java.net.URI;
@@ -15,17 +13,13 @@ import javax.json.bind.JsonbConfig;
 
 // MicroProfile
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 // JUnit
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import org.opentest4j.AssertionFailedError;
-//import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
 
 public class Test_GetAuthors {
     @RestClient
@@ -64,13 +58,8 @@ public class Test_GetAuthors {
         System.out.println(
                 "[JUNIT-TEST] -> Access the Auther class instance - author_json.name : " + author_json.getName());
 
-        // verify response
+        // verify response with JUnit
         System.out.println("[JUNIT-TEST] -> Verify");
-        // try {
-            assertEquals(expectedResult, author_json.getName());
-        /* } catch (final 
-         e) {
-            System.out.println("[JUNIT-TEST] Execption -> AssertionFailedError message : " + e.toString());
-        } */
+        assertEquals(expectedResult, author_json.getName());
     }
 }

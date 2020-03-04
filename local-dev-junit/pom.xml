@@ -22,17 +22,16 @@
 			<artifactId>microprofile</artifactId>
 			<version>3.2</version>
 			<type>pom</type>
-			<scope>provided</scope>
+			<scope>provided</scope> 
 		</dependency>
 		<!-- MicroProfile -->
-		<!-- MicroProfile client-->
-		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-rs-mp-client -->
+		<!-- MicroProfile REST client-->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-mp-client</artifactId>
 			<version>3.3.1</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>	
 		<!-- MicroProfile client-->
 
 		<!-- JUnit Test --> 

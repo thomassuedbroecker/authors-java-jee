@@ -6,7 +6,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Attach)",
+            "name": "Remote Debug (Attach)",
             "request": "attach",
             "hostName": "localhost",
             "port": 7777

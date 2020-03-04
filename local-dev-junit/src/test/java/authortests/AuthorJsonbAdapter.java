@@ -2,9 +2,8 @@ package authortests;
 
 import com.ibm.authors.Author;
 
-// JSON-B
+// JSON-Binding
 import javax.json.bind.adapter.JsonbAdapter;
-// JSON
 import javax.json.JsonObject;
 import javax.json.Json;
 
