@@ -197,10 +197,10 @@ We need to add following dependencies in the pom.xml.
 
 # 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-In the following code is the interface class `AuthorTestClient`.
+The following code shows the interface class `AuthorTestClient`.
 That class contains the REST Client interface definition for the REST Endpoint of the Authors microservice. With the usage of MicroProfile annotation `@RegisterRestClient` a RESTful Client will be created, when the interface is used in the JUnit test.
 
-I define the expected return value of `getAuthors` response as a `String`. 
+The expected return value of `getAuthors` response is defined as a `String`. 
 
 As you see, there is only one annotation of MicroProfile `@RegisterRestClient` utilized and the remaing annotations are from JAX-RS.
 
@@ -260,7 +260,7 @@ The values are in order to fit to parameters `nameAuthor` and `expectedResult`.
 # 5. How to define write the concrete parameterized JUnit test? 
 
 
-1. Create a REST Client
+## Step 1: Create a REST Client
 
 To invoke our REST Endpoint `getAuthor` of the Authors microservice we use the 
 `RestClientBuilder` from MicroProfile to create our REST Client.
@@ -271,7 +271,7 @@ Here we use the defined Interface `AuthorTestClient.class` and the builder retur
 final AuthorTestClient authorClient = RestClientBuilder.newBuilder().baseUri(baseURI).build(AuthorTestClient.class);
 ```
 
-2. Invoke the REST Client
+## Step 2: Invoke the REST Client
 
 Now we invoke the REST Client and we use our test parameter `nameAuthor`as input.
 
@@ -279,7 +279,7 @@ Now we invoke the REST Client and we use our test parameter `nameAuthor`as input
 final String response = authorClient.getAuthor(nameAuthor);
 ```
 
-3. Convert the response to a Author data object
+## Step 3: Convert the response to a Author data object
 
 _Note:_ Here we use JSON-B
 
@@ -289,9 +289,9 @@ _Note:_ Here we use JSON-B
 	final Author author_json = fromJson(response, Author.class);
 ```
 
-4. Compare the actual value of response with the expected value from the parameter
+## Step 4: Compare the actual value of response with the expected value from the parameter
 
-To compare the values we use the assertEquals from JUnit.
+To compare the actual and expected value we use the assertEquals from JUnit.
 
 https://junit.org/junit4/javadoc/latest/org/junit/Assert.html
 
