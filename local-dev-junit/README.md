@@ -85,9 +85,12 @@ Here are the needed depencencies for JUnit in the `pom.xml`.
 	<!-- JUnit Test -->
 ```
 
-* Build plugins
+* Maven build plugins
 
-Here are the needed plugins for the build `maven-surefire-plugin` and `maven-failsafe-plugin`. 
+Here we need following plugins in the build section of the maven file:
+
+*  [maven-surefire-plugin](https://maven.apache.org/surefire/maven-surefire-plugin/usage.html) 
+* [maven-failsafe-plugin](https://maven.apache.org/surefire/maven-failsafe-plugin/usage.html). 
 
 ```xml
     <!-- JUNIT  -->
@@ -102,7 +105,7 @@ Here are the needed plugins for the build `maven-surefire-plugin` and `maven-fai
 	<!-- JUNIT -->
 ```
 
-To start the OpenLiberty server later with maven we add the `liberty-maven-plugin` to the `pom.xml` file.
+We use the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) for the  OpenLiberty server.
 
 ```xml
     <!-- Enable liberty-maven plugin -->
@@ -124,10 +127,12 @@ To start the OpenLiberty server later with maven we add the `liberty-maven-plugi
 
 # How to convert JSON Data from a String in a Java Class with JSON-B?
 
-When we get the result of the response of our endpoint `getAuthor` we got the data in a JSON format, but we want use data in an instance of a Author class.
+When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of a Author class.
 
-With Json-b we can define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) class and override the operations `adaptToJson` and `adaptFromJson`. 
-In the operation`adaptFromJson` we define how to create a Author object from a JSON Object.
+In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) to define how the conversion from JSON to a class instance works.
+Therefor we override the operations `adaptToJson` and `adaptFromJson`.
+
+The operation`adaptFromJson` defines how to create a Author object from a JSON Object.
 
 ```java
 import com.ibm.authors.Author;
