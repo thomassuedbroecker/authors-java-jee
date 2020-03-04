@@ -21,7 +21,7 @@ These are the steps we need to basicly to understand and to realize:
 2. How to convert JSON Data from a String to a Author Java instance with JSON-B?
 3. How to create a REST Client with JAX-RS and MicroProfile?
 4. How to configure parameterized a JUnit test?
-5. How to define write the concrete parameterized a JUnit test? 
+5. How to define write the concrete parameterized JUnit test? 
 6. How to execute the JUnit test?
 7. How to find results test results ?
 
@@ -62,6 +62,7 @@ These are the classes in the image above:
 * Dependencies
 
 In the `pom.xml` file you need to add the JUnit depencencies.
+
 The `junit-jupiter-api` and the `junit-jupiter-engine` are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
 
 Here are the needed depencencies for JUnit in the `pom.xml`.
@@ -171,7 +172,7 @@ The following code from the class `Test_GetAuthors.java` you see how to utilize 
 
 ## The Java project configuration for the JSON-B using maven
 
-Therefor we needed to add following dependencies in the pom.xml.
+We need to add following dependencies in the pom.xml.
 
 * One reference implementation from [GlassFish](https://en.wikipedia.org/wiki/GlassFish) for JSON
 * [The yasson reference implementation of JSON binding](https://projects.eclipse.org/projects/ee4j.yasson)
@@ -196,8 +197,8 @@ Therefor we needed to add following dependencies in the pom.xml.
 
 # 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-In the following code you see the interface class `AuthorTestClient`.
-That class contains the REST Client interface definition for the REST Endpoint of the Authors microservice. With the usage of MicroProfile annotation `@RegisterRestClient` a RESTful Client will be created, when we use the that interface to implement the JUnit test.
+In the following code is the interface class `AuthorTestClient`.
+That class contains the REST Client interface definition for the REST Endpoint of the Authors microservice. With the usage of MicroProfile annotation `@RegisterRestClient` a RESTful Client will be created, when the interface is used in the JUnit test.
 
 I define the expected return value of `getAuthors` response as a `String`. 
 
@@ -221,11 +222,11 @@ public interface AuthorTestClient {
 }
 ```
 
-## 4. How to configure parameterized a JUnit test?
+# 4. How to configure the parameterized a JUnit test?
 
 The class `Test_GetAuthors` implements the JUnit test with the operation `testGetAuthor`.
 
-The test is defined as a `ParameterizedTest` and can be repeated with given values.
+The test is defined as a `ParameterizedTest` and can be repeated with given values from a `CsvSource`.
 
 The annotation `@ParameterizedTest` and the value for `name`, the count of the parameters is configured. That test has two parameters.
 
@@ -255,6 +256,50 @@ The values are in order to fit to parameters `nameAuthor` and `expectedResult`.
                 "Michael,Michael Heinrich"
               }) 
 ```
+
+# 5. How to define write the concrete parameterized JUnit test? 
+
+
+1. Create a REST Client
+
+To invoke our REST Endpoint `getAuthor` of the Authors microservice we use the 
+`RestClientBuilder` from MicroProfile to create our REST Client.
+
+Here we use the defined Interface `AuthorTestClient.class` and the builder returns a object instance of the `AuthorTestClient`.
+
+```java
+final AuthorTestClient authorClient = RestClientBuilder.newBuilder().baseUri(baseURI).build(AuthorTestClient.class);
+```
+
+2. Invoke the REST Client
+
+Now we invoke the REST Client and we use our test parameter `nameAuthor`as input.
+
+```java
+final String response = authorClient.getAuthor(nameAuthor);
+```
+
+3. Convert the response to a Author data object
+
+_Note:_ Here we use JSON-B
+
+```java
+	final JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
+	final Jsonb jsonb = JsonbBuilder.create(config);
+	final Author author_json = fromJson(response, Author.class);
+```
+
+4. Compare the actual value of response with the expected value from the parameter
+
+To compare the values we use the assertEquals from JUnit.
+
+https://junit.org/junit4/javadoc/latest/org/junit/Assert.html
+
+```java
+        assertEquals(expectedResult, author_json.getName());
+```
+
+
 
 
 
