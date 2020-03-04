@@ -8,18 +8,18 @@ You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE applica
 
 The Authors microservice has one RESTful api endpoint called `getAuthor`. The endpoint provides one parameter for the Author name. The endpoint returns Author data in a JSON format.
 
-These are the steps we need to understand and to realize:
+These are the steps we need to basicly to understand and to realize:
 
 1. To invoke that REST endpoint of the Authors microservice we need a REST Client.
-2. Then we need to transform the JSON response to a Author data class. 
-3. Next we need to handle different values to invoke different values for the parameter of the Author name, to run tests with a variations of names.
-4. Then we need to verify the actual value against the expected value and document the result.
+2. Then we need to transform the JSON response of the REST endpoint to a Author data class. 
+3. To run tests with a variations of names, we need to handle different values to invoke the REST Endpoint parameter for the Author name.
+4. Then we need to compare the actual response value with a expected value and document the result.
 
 **To create the JUnit test, we need to know**
 
 1. How to setup a JUnit test on the OpenLiberty for the development mode?
 2. How to convert JSON Data from a String to a Author Java instance with JSON-B?
-3. How to create a REST Client with JAX-RS?
+3. How to create a REST Client with JAX-RS and MicroProfile?
 4. How to configure parameterized a JUnit test?
 5. How to define write the concrete parameterized a JUnit test? 
 6. How to execute the JUnit test?
@@ -38,11 +38,11 @@ That are the Tools and frameworks I use in my example project:
 
 # 1. How to setup a JUnit test on the OpenLiberty for the development mode?
 
-To setup JUnit tests and run the on the OpenLiberty server in the development mode, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
+To setup JUnit tests and run with the OpenLiberty server in the development mode, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
 
 ![open-liberty-junit-01-folderstructure](images/open-liberty-junit-01-folderstructure.png)
 
-These are the classes you see in the image above:
+These are the classes in the image above:
 
 **`com.ibm.authors` Package for Authors microservice**
 
@@ -55,7 +55,7 @@ These are the classes you see in the image above:
 
 * `AuthorJsonbAdapter` class repesents JSON-B adapter for a JSON-B mapping configuration.
 * `AuthorTestClient` class repesents the REST Client of the Authors microservice.
-* `Test_GetAuthors` class repesents the JUnit test which will be executed for a test run.
+* `Test_GetAuthors` class repesents the JUnit test which will be executed as the  parameterized test run.
 
 ## 1.2 The Java project configuration for the JUnit test using Maven
 
@@ -160,6 +160,14 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
     }
 }
 ```
+As you see in the following code from the class `Test_GetAuthors.java`.
+In a new JSON-B configuration will be created based on the `AuthorJsonbAdapter`. That configuration is utilized to create a JSON-B object. That JSON-B object then contains the implemented operation `fromJson` and knows how to create a instance of a Author class. 
+
+```java
+    final JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
+    final Jsonb jsonb = JsonbBuilder.create(config);    
+    final Author author_json = jsonb.fromJson(response, Author.class);
+```
 
 ## The Java project configuration for the JSON-B using maven
 
@@ -188,9 +196,9 @@ Here we add:
 
 # 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-Here you see the REST Client interface definition of the REST Endpoint for the Authors microservice. MicroProfile will create a RESTful Client, when in the test class will use that interface. Using JAX-RS and MicroProfile RestClient.
+Here you see the REST Client interface definition of the REST Endpoint for the Authors microservice. MicroProfile will create a RESTful Client, when the test class uses that interface.
 
-I define the expected return value for of the Authors microservice response as `String`. 
+I define the expected return value of `getAuthors` response as a `String`. 
 
 ```java
 import javax.ws.rs.Path;
