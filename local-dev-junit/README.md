@@ -10,9 +10,9 @@ The Authors microservice has one RESTful api endpoint called `getAuthor`. The en
 
 These are the steps we need to basicly to understand and to realize:
 
-1. To invoke that REST endpoint of the Authors microservice we need a REST Client.
+1. We need a REST Client to invoke the REST endpoint of the Authors microservice.
 2. Then we need to transform the JSON response of the REST endpoint to a Author data class. 
-3. To run tests with a variations of names, we need to handle different values to invoke the REST Endpoint parameter for the Author name.
+3. We need to handle different values to invoke the REST Endpoint parameter for the Author name, to run tests with a variations of name. 
 4. Then we need to compare the actual response value with a expected value and document the result.
 
 **To create the JUnit test, we need to know**
