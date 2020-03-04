@@ -2,7 +2,7 @@
 
 # Write and run a JUnit test for a microservice based on MircoProfile for the OpenLiberty server in the development mode
 
-The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). It isn't intended to be a blueprint, how to write JUnit tests or to definition test organization, test strategie and so on, it is just to get technically started with one concrete example. 
+The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). It isn't intended to be a blueprint, how to write JUnit tests or to definition test organization, test strategie and so on, it is just to get technically started with one concrete example. 
 
 You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE application"](https://openliberty.io/guides/microshed-testing.html#bootstrapping-your-application-for-testing) to start with.
 
@@ -17,13 +17,17 @@ These are the steps we need to understand and to realize:
 
 **To create the JUnit test, we need to know**
 
-1. How to setup and run JUnit tests on the OpenLiberty development server?
+1. How to setup a JUnit test on the OpenLiberty for the development mode?
 2. How to convert JSON Data from a String in a Author Java instance with JSON-B (MicroProfile)?
-3. How to create a REST Client with JAX-RS (MicroProfile)?
-4. How to configure parameterized a test in JUnit?
-5. How to compare and report results in JUnit?
+3. How to create a REST Client with JAX-RS?
+4. How to configure parameterized a JUnit test?
+5. How to define write the concrete parameterized a JUnit test? 
+6. How to run the JUnit test?
+7. How to find results test results ?
 
 **Tools and frameworks**
+
+That are the Tools and frameworks I use in my example project:
 
 * IDE: [Visual Studio Code](https://code.visualstudio.com/)
 * Server: [Open Liberty](https://openliberty.io/)
@@ -32,7 +36,7 @@ These are the steps we need to understand and to realize:
 
 ---
 
-# How to setup and run JUnit tests on the OpenLiberty development server?
+# 1. How to setup a JUnit test on the OpenLiberty for the development mode?
 
 To setup JUnit tests and run the on the OpenLiberty server in the development mode, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
 
@@ -53,7 +57,7 @@ These are the classes you see in the image above:
 * `AuthorTestClient` class repesents the REST Client of the Authors microservice.
 * `Test_GetAuthors` class repesents the JUnit test which will be executed for a test run.
 
-## The Java project configuration for the JUnit test using Maven
+## 1.2 The Java project configuration for the JUnit test using Maven
 
 * Dependencies
 
@@ -125,12 +129,11 @@ We use the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) for t
 
 ---
 
-# How to convert JSON Data from a String in a Java Class with JSON-B?
+# 2. How to convert JSON Data from a String in a Author Java instance with JSON-B (MicroProfile)?
 
 When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of a Author class.
 
-In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) to define how the conversion from JSON to a class instance works.
-Therefor we override the operations `adaptToJson` and `adaptFromJson`.
+In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) to define how the conversion from JSON to a class instance works. Therefor we override the operations `adaptToJson` and `adaptFromJson`.
 
 The operation`adaptFromJson` defines how to create a Author object from a JSON Object.
 
@@ -145,13 +148,7 @@ import javax.json.Json;
 
 public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
  
-    @Override
-    public JsonObject adaptToJson(final Author author) throws Exception {
-        return Json.createObjectBuilder()
-        .add("blog", author.getBlog())
-        .add("name", author.getName())
-        .add("pages", author.getTwitter()).build();
-    }
+    ...
 
     @Override
     public Author adaptFromJson(final JsonObject jsonObject) throws Exception {
@@ -166,7 +163,25 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
 
 ## The Java project configuration for the JSON-B using maven
 
+Here we add:
 
+* One reference implementation from [GlassFish](https://en.wikipedia.org/wiki/GlassFish) for JSON
+* [The yasson reference implementation of JSON binding](https://projects.eclipse.org/projects/ee4j.yasson)
+
+```xml
+	<!-- JSONB --> 
+	<dependency>
+		<groupId>org.eclipse</groupId>
+		<artifactId>yasson</artifactId>
+		<version>1.0</version>			<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish</groupId>
+		<artifactId>javax.json</artifactId>
+		<version>1.1</version>
+		<scope>test</scope>
+	</dependency>		
+	<!-- JSONB -->
 
 ---
 
