@@ -2,20 +2,20 @@
 
 # Write and execute a JUnit test for a Java microservice based on MircoProfile running at the OpenLiberty server in the development mode
 
-The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). 
+The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly with the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). 
 
-It isn't intended to be a blueprint, or a how to guide for writing JUnit tests or how to definition test organization, test strategie and so on, it is just to get technically started with one concrete microservice example for the Cloud Native Starter project. 
+It isn't intended to be a blueprint, or a how to guide for writing JUnit tests or how to definition test organization, test strategy and so on, it is just to get technically started with one concrete microservice example for the Cloud Native Starter project. 
 
 You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE application"](https://openliberty.io/guides/microshed-testing.html#bootstrapping-your-application-for-testing) to start with.
 
 The Authors microservice has one RESTful api endpoint called `getAuthor`. The endpoint provides one parameter for the Author name. The endpoint returns Author data in a JSON format.
 
-These are the steps we need to basically to understand and to realize:
+These are the steps we need to basically to do:
 
 1. We need a REST Client to invoke the REST endpoint of the Authors microservice.
-2. Then we need to transform the JSON response of the REST endpoint to an Author data class. 
+2. We need to transform the JSON response of the REST endpoint to an Author data class. 
 3. We need to handle different values to invoke the REST Endpoint parameter for the Author name to run tests with a variations of name. 
-4. Then we need to compare the actual response value with an expected value and document the result.
+4. We need to compare the actual response value with an expected value and document the result.
 
 Here is a example of the test execution:
 
@@ -135,13 +135,13 @@ We use the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) for t
 
 ---
 
-# 2. How to convert JSON Data from a String to a Author Java instance with JSON-B?
+# 2. How to convert JSON Data from a String to an Author Java instance with JSON-B?
 
-When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of a Author class.
+When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of an Author class.
 
 In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) to define how the conversion from JSON to a class instance works. Therefor we `@Override the operations `adaptToJson` and `adaptFromJson`.
 
-The operation`adaptFromJson` defines how to create a Author object from a JSON Object.
+The operation`adaptFromJson` defines how to create an Author object from a JSON Object.
 
 ```java
 // Author data class
@@ -167,7 +167,7 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
 }
 ```
 
-The following code from the class `Test_GetAuthors.java` you see how to utilize the `AuthorJsonbAdapter` to create a new JSON-B configuration. That configuration is used to create a JSON-B object. That JSON-B object contains the implemented operation `fromJson` and knows how to create a instance of a Author class. 
+The following code from the class `Test_GetAuthors.java` you see how to utilize the `AuthorJsonbAdapter` to create a new JSON-B configuration. That configuration is used to create an JSON-B object. That JSON-B object contains the implemented operation `fromJson` and knows how to create a instance of an Author class. 
 
 ```java
     final JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
@@ -249,7 +249,7 @@ public void testGetAuthor(
 			final String expectedResult)
 ```
 
-The annotation `@CsvSource` contains a comma seperated list of values which will for the test execution. 
+The annotation `@CsvSource` contains a comma separated list of values for the test execution. 
 
 For more details see in the [JUnit documentation](https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/params/provider/CsvSource.html). 
 
@@ -270,7 +270,7 @@ The values are in order to fit to parameters `nameAuthor` and `expectedResult`.
 To invoke our REST Endpoint `getAuthor` of the Authors microservice we use the 
 `RestClientBuilder` from MicroProfile to create our REST Client.
 
-Here we use the defined Interface `AuthorTestClient.class` and the builder returns a object instance of the `AuthorTestClient`.
+Here we use the defined Interface `AuthorTestClient.class` and the RestClientBuilder returns a object instance of the `AuthorTestClient`.
 
 ```java
 final AuthorTestClient authorClient = RestClientBuilder.newBuilder().baseUri(baseURI).build(AuthorTestClient.class);
@@ -302,9 +302,9 @@ To compare the actual and expected value we use the assertEquals from JUnit.
      assertEquals(expectedResult, author_json.getName());
 ```
 
-If a the values aren't equal a`ssertEquals` throws a `AssertionFailedError` and document the error in `target/surefire-reports/TEST-authortests.Test_GetAuthors.txt`.
+If a the values aren't equal a`ssertEquals` throws a `AssertionFailedError` and document the error in `target/surefire-reports/TEST-authortests.Test_GetAuthors.txt` file.
 
-Here a example output:
+Here a example output in `TEST-authortests.Test_GetAuthors.txt` file.
 
 ```
 org.opentest4j.AssertionFailedError: expected: <Michael Heinrich> but was: <Niklas Heidloff>
@@ -315,13 +315,13 @@ For more details see in the [JUnit documentation](https://junit.org/junit4/javad
 
 # 6. How to execute the JUnit test?
 
-With the usage of the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) we can simple start the OpenLiberty server with:
+With the usage of the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) we can simple start the OpenLiberty server in the development mode with:
 
 ```sh
 $ mvn liberty:dev
 ```
 
-Then we cab just press return, as we see in the terminal.
+Then we just press return, as it is show in the terminal.
 
 ```sh
 $ [INFO] Press the Enter key to run tests on demand.
@@ -340,7 +340,7 @@ Run test a find the test results.
 
 ---
 
-# Additional resources
+# Additional resources blog posts or manuals
 
 ## MicroProfile RestClient
 
