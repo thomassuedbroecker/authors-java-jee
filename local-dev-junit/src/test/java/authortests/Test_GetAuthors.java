@@ -68,7 +68,8 @@ public class Test_GetAuthors {
         System.out.println("[JUNIT-TEST] -> Verify");
         // try {
             assertEquals(expectedResult, author_json.getName());
-        /* } catch (final AssertionFailedError e) {
+        /* } catch (final 
+         e) {
             System.out.println("[JUNIT-TEST] Execption -> AssertionFailedError message : " + e.toString());
         } */
     }

@@ -1,22 +1,21 @@
 **!!! UNDER CONSTRUCTION !!!**
 
-# JUnit Testing on OpenLiberty development server, running a microservice based on MircoProfile 
+# Write and run a JUnit test OpenLiberty development mode, for a microservice based on MircoProfile 
 
-The project does only contain technical basics: how to develop a JUnit for the Authors microservice of the Cloud Native Starter example.
+The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). It isn't intended to be a blueprint, how to write JUnit tests or to definition test organization, test strategie and so on, it is just to get technically started with one concrete example. 
+
+You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE application"](https://openliberty.io/guides/microshed-testing.html#bootstrapping-your-application-for-testing) to start with.
 
 The Authors microservice has one RESTful api endpoint called `getAuthor`. The endpoint provides one parameter for the Author name. The endpoint returns Author data in a JSON format.
 
 These are the steps we need to understand and to realize:
 
 1. To invoke that REST endpoint of the Authors microservice we need a REST Client.
-
 2. Then we need to transform the JSON response to a Author data class. 
-
 3. Next we need to handle different values to invoke different values for the parameter of the Author name, to run tests with a variations of names.
-
 4. Then we need to verify the actual value against the expected value and document the result.
 
-**To realize what we want to do, we need to know**
+**To create the JUnit test, we need to know**
 
 1. How to setup and run JUnit tests on the OpenLiberty development server?
 2. How to convert JSON Data from a String in a Author Java instance with JSON-B (MicroProfile)?
@@ -26,16 +25,16 @@ These are the steps we need to understand and to realize:
 
 **Tools and frameworks**
 
-* IDE: Visual Studio Code
-* Server: Open Liberty
-* Framework: MicroProfie
-* Java project organization: Maven
+* IDE: [Visual Studio Code](https://code.visualstudio.com/)
+* Server: [Open Liberty](https://openliberty.io/)
+* Framework: [Eclipse MicroProfile](https://projects.eclipse.org/projects/technology.microprofile)
+* Java project organization: [Apache Maven](https://maven.apache.org/)
 
 ---
 
 # How to setup and run JUnit tests on the OpenLiberty development server?
 
-To setup JUnit tests and run them directly on the same OpenLiberty server as the microservice application, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
+To setup JUnit tests and run the on the OpenLiberty server in the development mode, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
 
 ![open-liberty-junit-01-folderstructure](images/open-liberty-junit-01-folderstructure.png)
 
@@ -54,7 +53,7 @@ These are the classes you see in the image above:
 * `AuthorTestClient` class repesents the REST Client of the Authors microservice.
 * `Test_GetAuthors` class repesents the JUnit test which will be executed for a test run.
 
-## The Java project configuration for the JUnit test using maven
+## The Java project configuration for the JUnit test using Maven
 
 * Dependencies
 
