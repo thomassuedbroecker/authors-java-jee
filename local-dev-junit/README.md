@@ -160,8 +160,8 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
     }
 }
 ```
-As you see in the following code from the class `Test_GetAuthors.java`.
-Based on the `AuthorJsonbAdapter` a new JSON-B configuration is created. That configuration is utilized to create a JSON-B object. That JSON-B object contains the implemented operation `fromJson` and knows how to create a instance of a Author class. 
+
+The following code from the class `Test_GetAuthors.java` you see how to utilize the `AuthorJsonbAdapter` to create a new JSON-B configuration. That configuration is used to create a JSON-B object. That JSON-B object contains the implemented operation `fromJson` and knows how to create a instance of a Author class. 
 
 ```java
     final JsonbConfig config = new JsonbConfig().withAdapters(new AuthorJsonbAdapter());
@@ -171,7 +171,7 @@ Based on the `AuthorJsonbAdapter` a new JSON-B configuration is created. That co
 
 ## The Java project configuration for the JSON-B using maven
 
-Here we add:
+Therefor we needed to add following dependencies in the pom.xml.
 
 * One reference implementation from [GlassFish](https://en.wikipedia.org/wiki/GlassFish) for JSON
 * [The yasson reference implementation of JSON binding](https://projects.eclipse.org/projects/ee4j.yasson)
@@ -201,7 +201,7 @@ That class contains the REST Client interface definition for the REST Endpoint o
 
 I define the expected return value of `getAuthors` response as a `String`. 
 
-As you see, there is only one annotation of MicroProfile `@RegisterRestClient` and remaing annotations are from JAX-RS.
+As you see, there is only one annotation of MicroProfile `@RegisterRestClient` utilized and the remaing annotations are from JAX-RS.
 
 ```java
 import javax.ws.rs.Path;
@@ -223,19 +223,19 @@ public interface AuthorTestClient {
 
 ## 4. How to configure parameterized a JUnit test?
 
-The class `Test_GetAuthors` implements the JUnit test. 
+The class `Test_GetAuthors` implements the JUnit test with the operation `testGetAuthor`.
 
-The test is defined as a `ParameterizedTest` and will be repeated with given values inside the test class.
+The test is defined as a `ParameterizedTest` and can be repeated with given values.
 
-The annotation `@ParameterizedTest` defines for the test two parameters.
+The annotation `@ParameterizedTest` and the value for `name`, the count of the parameters is configured. That test has two parameters.
 
 ```java
     @ParameterizedTest(name = "{index} => name=''{0},{1}''")
 ```
 
-More details you find here in the [JUnit documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/params/ParameterizedTest.html) and can be repeated by using these input parameters.
+For more details see in the [JUnit documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/params/ParameterizedTest.html) and can be repeated by using these input parameters.
 
-The concrete test implementation itself is the operation `testGetAuthor`. The operation contains the names for the parameters defined before , which we use in the test implementation.
+The concrete test implementation itself happens in the operation `testGetAuthor`. The operation contains the names for the parameters defined before. These parameters we use in the test implementation.
  
 ```java
 public void testGetAuthor(
@@ -245,7 +245,7 @@ public void testGetAuthor(
 
 The annotation `@CsvSource` contains a comma seperated list of values which will for the test execution. 
 
-More details you find here in the [JUnit documentation](https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/params/provider/CsvSource.html). 
+For more details see in the [JUnit documentation](https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/params/provider/CsvSource.html). 
 
 The values are in order to fit to parameters `nameAuthor` and `expectedResult`.
 
