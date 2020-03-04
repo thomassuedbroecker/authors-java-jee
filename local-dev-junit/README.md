@@ -39,6 +39,23 @@ To setup JUnit tests and run them directly on the same OpenLiberty server as the
 
 ![open-liberty-junit-01-folderstructure](images/open-liberty-junit-01-folderstructure.png)
 
+These are the classes you see in the image above:
+
+**`com.ibm.authors` Package for Authors microservice**
+
+* `AuthorsApplication` class repesents the JAX-RS RESTful web application.
+* `Author` class repesents the data structure we use for the Author.
+* `GetAuthor` class repesents the REST API Endpoint.
+* `HealthEndpoint` class repesents the support readiness probes for Kubernetes.
+
+**`authortests` Package for the JUnit test of the Authors microservice**
+
+* `AuthorJsonbAdapter` class repesents JSON-B adapter for a JSON-B mapping configuration.
+* `AuthorTestClient` class repesents the REST Client of the Authors microservice.
+* `Test_GetAuthors` class repesents the JUnit test which will be executed for a test run.
+
+
+
 In the `pom.xml` file you need to add the JUnit depencencies.
 The `junit-jupiter-api` and the `junit-jupiter-engine` are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
 
@@ -107,7 +124,7 @@ To start the OpenLiberty server later with maven we add the `liberty-maven-plugi
 When we get the result of the response of our endpoint `getAuthor` we got the data in a JSON format, but we want use data in an instance of a Author class.
 
 With Json-b we can define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) class and override the operations `adaptToJson` and `adaptFromJson`. 
-In the operation`adaptFromJson` we define how to create a Author object a JSON object.
+In the operation`adaptFromJson` we define how to create a Author object from a JSON Object.
 
 ```java
 import com.ibm.authors.Author;
