@@ -2,7 +2,7 @@
 
 # Write and execute a JUnit test for a Java microservice based on MircoProfile running at the OpenLiberty server in the development mode
 
-The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly with the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). 
+The project does only contain the technical basics: how to develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice from the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run both microservice and JUnit test with a [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). 
 
 It isn't intended to be a blueprint, or a how to guide for writing JUnit tests or how to definition test organization, test strategy and so on, it is just to get technically started with one concrete microservice example for the Cloud Native Starter project. 
 
@@ -10,40 +10,42 @@ You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE applica
 
 The Authors microservice has one RESTful api endpoint called `getAuthor`. The endpoint provides one parameter for the Author name. The endpoint returns Author data in a JSON format.
 
-These are the steps we need to basically to do:
+**The question it:  What do we need and how do we realize it?**
 
-1. We need a REST Client to invoke the REST endpoint of the Authors microservice.
-2. We need to transform the JSON response of the REST endpoint to an Author data class. 
-3. We need to handle different values to invoke the REST Endpoint parameter for the Author name to run tests with a variations of name. 
-4. We need to compare the actual response value with an expected value and document the result.
+**We need to**
+ 
+ * .. invoke the REST endpoint of the Authors 
+ * .. microservice with a REST Client.
+ * .. transform the JSON response of the REST endpoint to an Author data class
+ * .. handle different values to invoke the REST Endpoint parameter for the Author name to run tests with a variations of name.
+ * .. compare the actual response value with an expected value and document the result.
 
 Here is a example of the test execution:
 
 ![junit-on-openliberty-run-test](images/junit-on-openliberty-run-test.gif)
 
 
-**To create the JUnit test, we need to know**
+**Questions are how to**
+ 
+ 1. .. setup a JUnit test for the development mode of the OpenLiberty  server
+ 2. .. convert JSON Data from a String to an Author Java instance with JSON-B
+ 4. .. define a REST Client?
+ 5. .. configure parameterized a JUnit test?
+ 6. .. write the concrete parameterized JUnit test?
+ 7. .. execute the JUnit test find results test results?
 
-1. How to setup a JUnit test on the OpenLiberty for the development mode?
-2. How to convert JSON Data from a String to a Author Java instance with JSON-B?
-3. How to create a REST Client with JAX-RS and MicroProfile?
-4. How to configure parameterized a JUnit test?
-5. How to define write the concrete parameterized JUnit test? 
-6. How to execute the JUnit test?
-7. How to find results test results?
-
-**Tools and frameworks**
+**What are the tools and frameworks?**
 
 That are the Tools and frameworks I use in my example project:
 
-* IDE: [Visual Studio Code](https://code.visualstudio.com/)
+* IDE: [Visual Studio Code](https://code.visualstudio.com/) with the Java Development Extension
 * Server: [Open Liberty](https://openliberty.io/)
 * Framework: [Eclipse MicroProfile](https://projects.eclipse.org/projects/technology.microprofile)
 * Java project organization: [Apache Maven](https://maven.apache.org/)
 
 ---
 
-# 1. How to setup a JUnit test on the OpenLiberty for the development mode?
+# 1. How to setup a JUnit test for the development mode of the OpenLiberty server?
 
 To setup JUnit tests and run with the OpenLiberty server in the development mode, we have to provide a `test` folder in the `src` folder of our Java project. The image below shows the folders of my example project.
 
@@ -64,7 +66,7 @@ These are the classes in the image above:
 * `AuthorTestClient` class represents the REST Client of the Authors microservice.
 * `Test_GetAuthors` class represents the JUnit test which will be executed as the  parameterized test run.
 
-## 1.2 The Java project configuration for the JUnit test using Maven
+## 1.2 The Java project configuration for the JUnit test JUnit test and OpenLiberty with Maven
 
 * Dependencies
 
@@ -200,14 +202,14 @@ We need to add following dependencies in the pom.xml.
 
 ---
 
-# 3. How to create a REST Client with JAX-RS and MicroProfile?
+# 3. How to define a REST Client?
 
 The following code shows the interface class `AuthorTestClient`.
 That class contains the REST Client interface definition for the REST Endpoint of the Authors microservice. With the usage of MicroProfile annotation `@RegisterRestClient` a RESTful Client will be created, when the interface is used in the JUnit test.
 
-The expected return value of `getAuthors` response is defined as a `String`. 
+The expected return value of `getAuthors` response type is defined as a `String`. 
 
-As you see, there is only one annotation of MicroProfile `@RegisterRestClient` utilized and the remaing annotations are from JAX-RS.
+As you see, only one annotation of MicroProfile `@RegisterRestClient` utilized and the remaing annotations are from JAX-RS.
 
 ```java
 import javax.ws.rs.Path;
@@ -233,13 +235,13 @@ The class `Test_GetAuthors` implements the JUnit test with the operation `testGe
 
 The test is defined as a `ParameterizedTest` and can be repeated with given values from a `CsvSource`.
 
-The annotation `@ParameterizedTest` and the value for `name`, the count of the parameters is configured. That test has two parameters.
+* ParameterizedTest
+
+Here you see the annotation `@ParameterizedTest` and the configuration of `name`. The `name` contains count of the parameters, that test has two parameters.
 
 ```java
     @ParameterizedTest(name = "{index} => name=''{0},{1}''")
 ```
-
-For more details see in the [JUnit documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/params/ParameterizedTest.html) and can be repeated by using these input parameters.
 
 The concrete test implementation itself happens in the operation `testGetAuthor`. The operation contains the names for the parameters defined before. These parameters we use in the test implementation.
  
@@ -249,9 +251,13 @@ public void testGetAuthor(
 			final String expectedResult)
 ```
 
+For more details visit the [JUnit documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/params/ParameterizedTest.html).
+
+* CsvSource
+
 The annotation `@CsvSource` contains a comma separated list of values for the test execution. 
 
-For more details see in the [JUnit documentation](https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/params/provider/CsvSource.html). 
+For more details visit the [JUnit documentation](https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/params/provider/CsvSource.html). 
 
 The values are in order to fit to parameters `nameAuthor` and `expectedResult`.
 
@@ -294,7 +300,7 @@ _Note:_ Here we use JSON-B
 	final Author author_json = fromJson(response, Author.class);
 ```
 
-## Step 4: Compare the actual value of response with the expected value from the parameter
+## Step 4: Compare the actual value of response with the expected value from the test parameter
 
 To compare the actual and expected value we use the assertEquals from JUnit.
 
@@ -340,32 +346,22 @@ Run test a find the test results.
 
 ---
 
-# Additional resources blog posts or manuals
+# Additional resources blog posts, videos or manuals
 
 ## MicroProfile RestClient
 
-* [Tomitribe (Blog post)](https://www.tomitribe.com/blog/overview-of-microprofile-rest-client/)
+* [Overview MicroProfile REST Client (Tomitribe)](https://www.tomitribe.com/blog/overview-of-microprofile-rest-client/)
 
 ## JUnit
 
-Configure OpenLiberty:
-
 * [Setup Unit Tests in OpenLiberty](https://github.com/OpenLiberty/open-liberty/wiki/Unit-Tests)
-
-* [Dependencies in JUnit](https://junit.org/junit5/docs/5.1.0-M1/user-guide/#dependency-diagram)
-
-Useful blog posts:
-
-* [Adam-Bien (Blog post)](http://www.adam-bien.com/roller/abien/entry/using_microprofile_rest_client_for)
-
-* [Petri Kainulainen (Blog post)](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-parameterized-tests/)
-
-* [Sebastian Daschner (YouTube)](https://www.youtube.com/watch?v=JPctzdfxeXo)
-
+* [JUnit User Guide dependencies](https://junit.org/junit5/docs/5.1.0-M1/user-guide/#dependency-diagram)
+* [Using microprofile rest client for system testing (Adam-Bien)](http://www.adam-bien.com/roller/abien/entry/using_microprofile_rest_client_for)
+* [Unit 5 tutorial Writing parameterized tests (Petri Kainulainen)](https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-writing-parameterized-tests/)
+* [Create effective tests or create excuses — testing the Java EE way (Sebastian Daschner)](https://www.youtube.com/watch?v=JPctzdfxeXo)
 * [JUnit user-guide running tests is vscode](https://junit.org/junit5/docs/current/user-guide/#running-tests-ide-vscode)
 
 ## Jsonb
 
-* [RIECKPIL](https://rieckpil.de/whatis-json-binding-json-b/)
-
+* [What is JSON binding with JSON-B (RIECKPIL)](https://rieckpil.de/whatis-json-binding-json-b/)
 * [3 ways to convert String to JSON object in Java?](https://www.java67.com/2016/10/3-ways-to-convert-string-to-json-object-in-java.html)
