@@ -2,7 +2,9 @@
 
 # Write and execute a JUnit test for a Java microservice based on MircoProfile running at the OpenLiberty server in the development mode
 
-The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). It isn't intended to be a blueprint, how to write JUnit tests or to definition test organization, test strategie and so on, it is just to get technically started with one concrete example. 
+The project does only contain technical basics: how to technically develop a [JUnit](https://junit.org/junit5/) test for the Authors microservice of the [Cloud Native Starter](https://github.com/IBM/cloud-native-starter) example and run it directly in the [OpenLiberty server in the development mode](https://openliberty.io/blog/2019/10/22/liberty-dev-mode.html). 
+
+It isn't intended to be a blueprint, or a how to guide for writing JUnit tests or how to definition test organization, test strategie and so on, it is just to get technically started with one concrete microservice example for the Cloud Native Starter project. 
 
 You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE application"](https://openliberty.io/guides/microshed-testing.html#bootstrapping-your-application-for-testing) to start with.
 
@@ -23,7 +25,7 @@ These are the steps we need to basicly to understand and to realize:
 4. How to configure parameterized a JUnit test?
 5. How to define write the concrete parameterized JUnit test? 
 6. How to execute the JUnit test?
-7. How to find results test results ?
+7. How to find results test results?
 
 **Tools and frameworks**
 
@@ -90,12 +92,10 @@ Here are the needed depencencies for JUnit in the `pom.xml`.
 	<!-- JUnit Test -->
 ```
 
-* Maven build plugins
+* Build plugins
 
-Here we need following plugins in the build section of the maven file:
-
-*  [maven-surefire-plugin](https://maven.apache.org/surefire/maven-surefire-plugin/usage.html) 
-* [maven-failsafe-plugin](https://maven.apache.org/surefire/maven-failsafe-plugin/usage.html). 
+	*  [maven-surefire-plugin](https://maven.apache.org/surefire/maven-surefire-plugin/usage.html) 
+	* [maven-failsafe-plugin](https://maven.apache.org/surefire/maven-failsafe-plugin/usage.html). 
 
 ```xml
     <!-- JUNIT  -->
@@ -308,9 +308,25 @@ org.opentest4j.AssertionFailedError: expected: <Michael Heinrich> but was: <Nikl
 
 For more details see in the [JUnit documentation](https://junit.org/junit4/javadoc/latest/org/junit/Assert.html)
 
+# 6. How to execute the JUnit test?
 
+With the usage of the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) we can simple start the OpenLiberty server with:
 
+```sh
+$ mvn liberty:dev
+```
 
+Then we cab just press return, as we see in the terminal.
+
+```sh
+$ [INFO] Press the Enter key to run tests on demand.
+```
+
+# 7. How to find results test results?
+
+The test results are stored in the `target/surefire-reports/*` folder.
+
+![open-liberty-junit-02-testresults](images/open-liberty-junit-02-testresults.png)
 
 
 
