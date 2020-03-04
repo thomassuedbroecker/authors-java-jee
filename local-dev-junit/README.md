@@ -133,7 +133,7 @@ We use the [liberty-maven-plugin](https://github.com/OpenLiberty/ci.maven) for t
 
 When we get the result of the response of our endpoint `getAuthor` the result is a text in a JSON format, but we want use data in an instance of a Author class.
 
-In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) to define how the conversion from JSON to a class instance works. Therefor we override the operations `adaptToJson` and `adaptFromJson`.
+In JSON-B we define a [JsonbAdapter](https://www.eclipsecon.org/na2016/sites/default/files/slides/JSONB%20-%20EclipseCon%202016.pdf) to define how the conversion from JSON to a class instance works. Therefor we `@Override the operations `adaptToJson` and `adaptFromJson`.
 
 The operation`adaptFromJson` defines how to create a Author object from a JSON Object.
 
@@ -196,9 +196,11 @@ Here we add:
 
 # 3. How to create a REST Client with JAX-RS and MicroProfile?
 
-Here you see the REST Client interface definition of the REST Endpoint for the Authors microservice. MicroProfile will create a RESTful Client, when the test class uses that interface.
+Here you see the REST Client interface definition of the REST Endpoint for the Authors microservice. MicroProfile will create a RESTful Client, when we use the that interface for our JUnit test.
 
 I define the expected return value of `getAuthors` response as a `String`. 
+
+As you see most we using only one annotation of MicroProfile `@RegisterRestClient` and remaing annotations are from JAX-RS.
 
 ```java
 import javax.ws.rs.Path;
