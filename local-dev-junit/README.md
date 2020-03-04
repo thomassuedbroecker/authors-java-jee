@@ -54,7 +54,9 @@ These are the classes you see in the image above:
 * `AuthorTestClient` class repesents the REST Client of the Authors microservice.
 * `Test_GetAuthors` class repesents the JUnit test which will be executed for a test run.
 
+## The Java project configuration for the JUnit test using maven
 
+* Dependencies
 
 In the `pom.xml` file you need to add the JUnit depencencies.
 The `junit-jupiter-api` and the `junit-jupiter-engine` are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
@@ -83,6 +85,8 @@ Here are the needed depencencies for JUnit in the `pom.xml`.
 	</dependency>
 	<!-- JUnit Test -->
 ```
+
+* Build plugins
 
 Here are the needed plugins for the build `maven-surefire-plugin` and `maven-failsafe-plugin`. 
 
@@ -156,6 +160,10 @@ public class AuthorJsonbAdapter implements JsonbAdapter<Author, JsonObject> {
 }
 ```
 
+## The Java project configuration for the JSON-B using maven
+
+
+
 ---
 
 # How to create a REST Client with JAX-RS (MicroProfile)?
@@ -195,6 +203,8 @@ public interface AuthorTestClient {
 Configure OpenLiberty:
 
 * [Setup Unit Tests in OpenLiberty](https://github.com/OpenLiberty/open-liberty/wiki/Unit-Tests)
+
+* [Dependencies in JUnit](https://junit.org/junit5/docs/5.1.0-M1/user-guide/#dependency-diagram)
 
 Useful blog posts:
 
