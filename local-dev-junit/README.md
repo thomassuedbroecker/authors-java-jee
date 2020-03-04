@@ -10,12 +10,17 @@ You can also visit the [OpenLiberty tutorial "MicroProfile or Jakarta EE applica
 
 The Authors microservice has one RESTful api endpoint called `getAuthor`. The endpoint provides one parameter for the Author name. The endpoint returns Author data in a JSON format.
 
-These are the steps we need to basicly to understand and to realize:
+These are the steps we need to basically to understand and to realize:
 
 1. We need a REST Client to invoke the REST endpoint of the Authors microservice.
-2. Then we need to transform the JSON response of the REST endpoint to a Author data class. 
+2. Then we need to transform the JSON response of the REST endpoint to an Author data class. 
 3. We need to handle different values to invoke the REST Endpoint parameter for the Author name to run tests with a variations of name. 
-4. Then we need to compare the actual response value with a expected value and document the result.
+4. Then we need to compare the actual response value with an expected value and document the result.
+
+Here is a example of the test execution:
+
+![junit-on-openliberty-run-test](images/junit-on-openliberty-run-test.gif)
+
 
 **To create the JUnit test, we need to know**
 
@@ -48,26 +53,26 @@ These are the classes in the image above:
 
 **`com.ibm.authors` Package for Authors microservice**
 
-* `AuthorsApplication` class repesents the JAX-RS RESTful web application.
-* `Author` class repesents the data structure we use for the Author.
-* `GetAuthor` class repesents the REST API Endpoint.
-* `HealthEndpoint` class repesents the support readiness probes for Kubernetes.
+* `AuthorsApplication` class represents the JAX-RS RESTful web application.
+* `Author` class represents the data structure we use for the Author.
+* `GetAuthor` class represents the REST API Endpoint.
+* `HealthEndpoint` class represents the support readiness probes for Kubernetes.
 
 **`authortests` Package for the JUnit test of the Authors microservice**
 
-* `AuthorJsonbAdapter` class repesents JSON-B adapter for a JSON-B mapping configuration.
-* `AuthorTestClient` class repesents the REST Client of the Authors microservice.
-* `Test_GetAuthors` class repesents the JUnit test which will be executed as the  parameterized test run.
+* `AuthorJsonbAdapter` class represents JSON-B adapter for a JSON-B mapping configuration.
+* `AuthorTestClient` class represents the REST Client of the Authors microservice.
+* `Test_GetAuthors` class represents the JUnit test which will be executed as the  parameterized test run.
 
 ## 1.2 The Java project configuration for the JUnit test using Maven
 
 * Dependencies
 
-In the `pom.xml` file you need to add the JUnit depencencies.
+In the `pom.xml` file you need to add the JUnit dependencies.
 
 The `junit-jupiter-api` and the `junit-jupiter-engine` are the basics for the Unit tests. With the `junit-jupiter-params` depencency we can define later a parameterized test. 
 
-Here are the needed depencencies for JUnit in the `pom.xml`.
+Here are the needed dependencies for JUnit in the `pom.xml`.
 
 ```xml
 	<!-- JUnit Test --> 
@@ -328,7 +333,9 @@ The test results are stored in the `target/surefire-reports/*` folder.
 
 ![open-liberty-junit-02-testresults](images/open-liberty-junit-02-testresults.png)
 
+Run test a find the test results.
 
+![junit-on-openliberty-result](images/junit-on-openliberty-result.gif)
 
 
 ---
